@@ -1,0 +1,3403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="UniEasy helps students find South African universities and makes the university application process easier."
+    >
+
+    <meta
+        name="keywords"
+        content="South African universities, university applications, apply for university, UniEasy, students"
+    >
+
+    <meta name="author" content="UniEasy">
+
+    <meta property="og:title" content="UniEasy | Make University Applications Easy">
+    <meta
+        property="og:description"
+        content="Find universities and make your university application easier with UniEasy."
+    >
+    <meta property="og:type" content="website">
+
+    <title>UniEasy | Make University Applications Easy</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Skip Link -->
+    <a href="#mainContent" class="skip-link">
+        Skip to main content
+    </a>
+
+    <!-- =========================
+         HEADER
+    ========================== -->
+    <header class="site-header">
+
+        <div class="container header-container">
+
+            <a href="#home" class="logo">
+                <span class="logo-icon">U</span>
+                <span class="logo-text">UniEasy</span>
+            </a>
+
+            <button
+                type="button"
+                id="mobileMenuButton"
+                class="mobile-menu-button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav
+                id="mainNavigation"
+                class="main-navigation"
+                aria-label="Main navigation"
+            >
+                <a href="#home">Home</a>
+                <a href="#universities">Universities</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#about">About</a>
+                <a href="#faq">FAQ</a>
+                <a href="#contact">Contact</a>
+
+                <button
+                    type="button"
+                    id="darkModeButton"
+                    class="dark-mode-button"
+                    aria-label="Toggle dark mode"
+                >
+                    🌙
+                </button>
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main id="mainContent">
+
+        <!-- =========================
+             HERO
+        ========================== -->
+        <section id="home" class="hero-section">
+
+            <div class="container hero-container">
+
+                <div class="hero-content">
+
+                    <div class="hero-badge">
+                        🎓 Your University Journey Starts Here
+                    </div>
+
+                    <h1>
+                        Welcome to
+                        <span>UniEasy</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        Helping students make university applications
+                        easier, faster and less stressful.
+                    </p>
+
+                    <p class="hero-description">
+                        Find South African universities, visit their
+                        official websites, apply yourself or let UniEasy
+                        help you with your application.
+                    </p>
+
+                    <!-- =========================
+                         APPLICATION CHOICES
+                    ========================== -->
+                    <div class="apply-options">
+
+                        <div class="apply-choice">
+
+                            <div class="apply-choice-icon">
+                                🎓
+                            </div>
+
+                            <h2>
+                                Apply By Myself
+                            </h2>
+
+                            <p>
+                                Choose a university and complete your
+                                application directly through its
+                                official application system.
+                            </p>
+
+                            <a
+                                href="#universities"
+                                class="apply-btn apply-btn-primary"
+                            >
+                                APPLY BY MYSELF
+                            </a>
+
+                        </div>
+
+
+                        <div class="apply-choice">
+
+                            <div class="apply-choice-icon">
+                                🤝
+                            </div>
+
+                            <h2>
+                                Apply For Me
+                            </h2>
+
+                            <p>
+                                Let UniEasy collect your information
+                                and help you prepare your university
+                                application.
+                            </p>
+
+                            <button
+                                type="button"
+                                id="openApplyForMe"
+                                class="apply-btn apply-btn-secondary"
+                            >
+                                APPLY FOR ME
+                            </button>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             APPLY FOR ME
+             THIS ENTIRE SECTION IS HIDDEN INITIALLY
+        ====================================================== -->
+        <section
+            id="applyForMeSection"
+            class="apply-for-me-section"
+            hidden
+        >
+
+            <div class="container">
+
+                <div class="application-header">
+
+                    <span class="section-label">
+                        UNI EASY APPLICATION SERVICE
+                    </span>
+
+                    <h2>
+                        Apply For Me
+                    </h2>
+
+                    <p>
+                        Provide your information below and tell us
+                        which university or universities you would
+                        like help applying to.
+                    </p>
+
+                </div>
+
+
+                <!-- Important Notice -->
+                <div class="application-notice">
+
+                    <strong>
+                        📌 Before you continue
+                    </strong>
+
+                    <p>
+                        Please make sure that the information you
+                        provide is accurate and that you have the
+                        required supporting documents available.
+                    </p>
+
+                </div>
+
+
+                <!-- =========================
+                     APPLICATION FORM
+                ========================== -->
+                <form
+                    id="applyForMeForm"
+                    class="application-form"
+                    novalidate
+                >
+
+                    <!-- PERSONAL INFORMATION -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">1</span>
+                            Personal Information
+                        </legend>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="firstName">
+                                    First Name
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="firstName"
+                                    name="firstName"
+                                    placeholder="Enter your first name"
+                                    autocomplete="given-name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="middleName">
+                                    Middle Name
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="middleName"
+                                    name="middleName"
+                                    placeholder="Enter your middle name"
+                                    autocomplete="additional-name"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="lastName">
+                                    Last Name
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="lastName"
+                                    name="lastName"
+                                    placeholder="Enter your surname"
+                                    autocomplete="family-name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="idNumber">
+                                    South African ID / Passport Number
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="idNumber"
+                                    name="idNumber"
+                                    placeholder="Enter ID or passport number"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="dateOfBirth">
+                                    Date of Birth
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="date"
+                                    id="dateOfBirth"
+                                    name="dateOfBirth"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="gender">
+                                    Gender
+                                    <span class="required">*</span>
+                                </label>
+
+                                <select
+                                    id="gender"
+                                    name="gender"
+                                    required
+                                >
+                                    <option value="">
+                                        Select gender
+                                    </option>
+
+                                    <option value="female">
+                                        Female
+                                    </option>
+
+                                    <option value="male">
+                                        Male
+                                    </option>
+
+                                    <option value="other">
+                                        Other
+                                    </option>
+
+                                    <option value="prefer-not">
+                                        Prefer not to say
+                                    </option>
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- CONTACT INFORMATION -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">2</span>
+                            Contact Information
+                        </legend>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="applicationEmail">
+                                    Email Address
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="applicationEmail"
+                                    name="email"
+                                    placeholder="example@email.com"
+                                    autocomplete="email"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="applicationPhone">
+                                    Cellphone Number
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="applicationPhone"
+                                    name="phone"
+                                    placeholder="e.g. 067 123 4567"
+                                    autocomplete="tel"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="alternativePhone">
+                                    Alternative Phone Number
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="alternativePhone"
+                                    name="alternativePhone"
+                                    placeholder="Optional"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="province">
+                                    Province
+                                    <span class="required">*</span>
+                                </label>
+
+                                <select
+                                    id="province"
+                                    name="province"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select province
+                                    </option>
+
+                                    <option value="Eastern Cape">
+                                        Eastern Cape
+                                    </option>
+
+                                    <option value="Free State">
+                                        Free State
+                                    </option>
+
+                                    <option value="Gauteng">
+                                        Gauteng
+                                    </option>
+
+                                    <option value="KwaZulu-Natal">
+                                        KwaZulu-Natal
+                                    </option>
+
+                                    <option value="Limpopo">
+                                        Limpopo
+                                    </option>
+
+                                    <option value="Mpumalanga">
+                                        Mpumalanga
+                                    </option>
+
+                                    <option value="North West">
+                                        North West
+                                    </option>
+
+                                    <option value="Northern Cape">
+                                        Northern Cape
+                                    </option>
+
+                                    <option value="Western Cape">
+                                        Western Cape
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group form-group-full">
+
+                                <label for="homeAddress">
+                                    Residential Address
+                                    <span class="required">*</span>
+                                </label>
+
+                                <textarea
+                                    id="homeAddress"
+                                    name="homeAddress"
+                                    rows="3"
+                                    placeholder="Enter your residential address"
+                                    required
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- CITIZENSHIP -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">3</span>
+                            Citizenship & Background
+                        </legend>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="citizenship">
+                                    Citizenship
+                                    <span class="required">*</span>
+                                </label>
+
+                                <select
+                                    id="citizenship"
+                                    name="citizenship"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select citizenship
+                                    </option>
+
+                                    <option value="South African">
+                                        South African
+                                    </option>
+
+                                    <option value="Other African Country">
+                                        Other African Country
+                                    </option>
+
+                                    <option value="International">
+                                        International
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="homeLanguage">
+                                    Home Language
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="homeLanguage"
+                                    name="homeLanguage"
+                                    placeholder="e.g. Setswana"
+                                >
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- SCHOOL INFORMATION -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">4</span>
+                            School & Academic Information
+                        </legend>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="schoolName">
+                                    School Name
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="schoolName"
+                                    name="schoolName"
+                                    placeholder="Enter your school name"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="qualification">
+                                    Highest Qualification / Grade
+                                    <span class="required">*</span>
+                                </label>
+
+                                <select
+                                    id="qualification"
+                                    name="qualification"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select one
+                                    </option>
+
+                                    <option value="Grade 11">
+                                        Grade 11
+                                    </option>
+
+                                    <option value="Grade 12">
+                                        Grade 12
+                                    </option>
+
+                                    <option value="Matric">
+                                        Matric / NSC
+                                    </option>
+
+                                    <option value="Diploma">
+                                        Diploma
+                                    </option>
+
+                                    <option value="Degree">
+                                        Degree
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="yearCompleted">
+                                    Year Completed / Expected
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="number"
+                                    id="yearCompleted"
+                                    name="yearCompleted"
+                                    min="2000"
+                                    max="2100"
+                                    placeholder="e.g. 2026"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="studyLevel">
+                                    Study Level
+                                    <span class="required">*</span>
+                                </label>
+
+                                <select
+                                    id="studyLevel"
+                                    name="studyLevel"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select study level
+                                    </option>
+
+                                    <option value="Undergraduate">
+                                        Undergraduate
+                                    </option>
+
+                                    <option value="Postgraduate">
+                                        Postgraduate
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group form-group-full">
+
+                                <label for="academicInformation">
+                                    Subjects / Qualifications / Marks
+                                </label>
+
+                                <textarea
+                                    id="academicInformation"
+                                    name="academicInformation"
+                                    rows="5"
+                                    placeholder="Enter your subjects, marks or other academic information..."
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- UNIVERSITY CHOICES -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">5</span>
+                            University Choices
+                        </legend>
+
+                        <p class="form-help-text">
+                            Select the universities where you would
+                            like UniEasy to help you apply.
+                        </p>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="universityChoice1">
+                                    University 1
+                                    <span class="required">*</span>
+                                </label>
+
+                                <select
+                                    id="universityChoice1"
+                                    name="universityChoice1"
+                                    required
+                                >
+
+                                    <option value="">
+                                        Select university
+                                    </option>
+
+                                    <option value="CPUT">
+                                        Cape Peninsula University of Technology
+                                    </option>
+
+                                    <option value="CUT">
+                                        Central University of Technology
+                                    </option>
+
+                                    <option value="DUT">
+                                        Durban University of Technology
+                                    </option>
+
+                                    <option value="MUT">
+                                        Mangosuthu University of Technology
+                                    </option>
+
+                                    <option value="NMU">
+                                        Nelson Mandela University
+                                    </option>
+
+                                    <option value="NWU">
+                                        North-West University
+                                    </option>
+
+                                    <option value="RU">
+                                        Rhodes University
+                                    </option>
+
+                                    <option value="SMU">
+                                        Sefako Makgatho Health Sciences University
+                                    </option>
+
+                                    <option value="SPU">
+                                        Sol Plaatje University
+                                    </option>
+
+                                    <option value="SU">
+                                        Stellenbosch University
+                                    </option>
+
+                                    <option value="TUT">
+                                        Tshwane University of Technology
+                                    </option>
+
+                                    <option value="UCT">
+                                        University of Cape Town
+                                    </option>
+
+                                    <option value="UFH">
+                                        University of Fort Hare
+                                    </option>
+
+                                    <option value="UJ">
+                                        University of Johannesburg
+                                    </option>
+
+                                    <option value="UKZN">
+                                        University of KwaZulu-Natal
+                                    </option>
+
+                                    <option value="UL">
+                                        University of Limpopo
+                                    </option>
+
+                                    <option value="UMP">
+                                        University of Mpumalanga
+                                    </option>
+
+                                    <option value="UP">
+                                        University of Pretoria
+                                    </option>
+
+                                    <option value="UNISA">
+                                        University of South Africa
+                                    </option>
+
+                                    <option value="UFS">
+                                        University of the Free State
+                                    </option>
+
+                                    <option value="UWC">
+                                        University of the Western Cape
+                                    </option>
+
+                                    <option value="WITS">
+                                        University of the Witwatersrand
+                                    </option>
+
+                                    <option value="VUT">
+                                        Vaal University of Technology
+                                    </option>
+
+                                    <option value="UNIZULU">
+                                        University of Zululand
+                                    </option>
+
+                                    <option value="WSU">
+                                        Walter Sisulu University
+                                    </option>
+
+                                    <option value="UNIVEN">
+                                        University of Venda
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="courseChoice1">
+                                    Course / Programme
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="courseChoice1"
+                                    name="courseChoice1"
+                                    placeholder="e.g. BSc Computer Science"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="universityChoice2">
+                                    University 2
+                                </label>
+
+                                <select
+                                    id="universityChoice2"
+                                    name="universityChoice2"
+                                >
+
+                                    <option value="">
+                                        No second university
+                                    </option>
+
+                                    <option value="CPUT">
+                                        Cape Peninsula University of Technology
+                                    </option>
+
+                                    <option value="CUT">
+                                        Central University of Technology
+                                    </option>
+
+                                    <option value="DUT">
+                                        Durban University of Technology
+                                    </option>
+
+                                    <option value="MUT">
+                                        Mangosuthu University of Technology
+                                    </option>
+
+                                    <option value="NMU">
+                                        Nelson Mandela University
+                                    </option>
+
+                                    <option value="NWU">
+                                        North-West University
+                                    </option>
+
+                                    <option value="RU">
+                                        Rhodes University
+                                    </option>
+
+                                    <option value="SMU">
+                                        Sefako Makgatho Health Sciences University
+                                    </option>
+
+                                    <option value="SPU">
+                                        Sol Plaatje University
+                                    </option>
+
+                                    <option value="SU">
+                                        Stellenbosch University
+                                    </option>
+
+                                    <option value="TUT">
+                                        Tshwane University of Technology
+                                    </option>
+
+                                    <option value="UCT">
+                                        University of Cape Town
+                                    </option>
+
+                                    <option value="UFH">
+                                        University of Fort Hare
+                                    </option>
+
+                                    <option value="UJ">
+                                        University of Johannesburg
+                                    </option>
+
+                                    <option value="UKZN">
+                                        University of KwaZulu-Natal
+                                    </option>
+
+                                    <option value="UL">
+                                        University of Limpopo
+                                    </option>
+
+                                    <option value="UMP">
+                                        University of Mpumalanga
+                                    </option>
+
+                                    <option value="UP">
+                                        University of Pretoria
+                                    </option>
+
+                                    <option value="UNISA">
+                                        University of South Africa
+                                    </option>
+
+                                    <option value="UFS">
+                                        University of the Free State
+                                    </option>
+
+                                    <option value="UWC">
+                                        University of the Western Cape
+                                    </option>
+
+                                    <option value="WITS">
+                                        University of the Witwatersrand
+                                    </option>
+
+                                    <option value="VUT">
+                                        Vaal University of Technology
+                                    </option>
+
+                                    <option value="UNIZULU">
+                                        University of Zululand
+                                    </option>
+
+                                    <option value="WSU">
+                                        Walter Sisulu University
+                                    </option>
+
+                                    <option value="UNIVEN">
+                                        University of Venda
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="form-group">
+
+                                <label for="courseChoice2">
+                                    Course / Programme
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="courseChoice2"
+                                    name="courseChoice2"
+                                    placeholder="e.g. BSc Computer Science"
+                                >
+
+                            </div>
+
+
+                            <div class="form-group form-group-full">
+
+                                <label for="additionalUniversities">
+                                    Additional University / Course
+                                </label>
+
+                                <textarea
+                                    id="additionalUniversities"
+                                    name="additionalUniversities"
+                                    rows="3"
+                                    placeholder="If you want to apply to more universities, list them here..."
+                                ></textarea>
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- FUNDING -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">6</span>
+                            Funding Information
+                        </legend>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+
+                                <label for="funding">
+                                    Funding Preference
+                                </label>
+
+                                <select
+                                    id="funding"
+                                    name="funding"
+                                >
+
+                                    <option value="">
+                                        Select an option
+                                    </option>
+
+                                    <option value="NSFAS">
+                                        NSFAS
+                                    </option>
+
+                                    <option value="Bursary">
+                                        Bursary
+                                    </option>
+
+                                    <option value="Self-funded">
+                                        Self-funded
+                                    </option>
+
+                                    <option value="Not sure">
+                                        Not sure
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- DOCUMENTS -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">7</span>
+                            Required Documents
+                        </legend>
+
+                        <p class="form-help-text">
+                            Upload the documents available to you.
+                            Some universities may require additional
+                            documents.
+                        </p>
+
+                        <div class="document-grid">
+
+                            <div class="document-upload">
+
+                                <label for="idDocument">
+                                    ID / Passport
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="idDocument"
+                                    name="idDocument"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                    required
+                                >
+
+                                <small>
+                                    PDF, JPG or PNG — maximum 5 MB
+                                </small>
+
+                            </div>
+
+
+                            <div class="document-upload">
+
+                                <label for="schoolResults">
+                                    Latest School Results
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="schoolResults"
+                                    name="schoolResults"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                    required
+                                >
+
+                                <small>
+                                    PDF, JPG or PNG — maximum 5 MB
+                                </small>
+
+                            </div>
+
+
+                            <div class="document-upload">
+
+                                <label for="matricCertificate">
+                                    Matric Certificate / Final Results
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="matricCertificate"
+                                    name="matricCertificate"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                >
+
+                                <small>
+                                    PDF, JPG or PNG — maximum 5 MB
+                                </small>
+
+                            </div>
+
+
+                            <div class="document-upload">
+
+                                <label for="proofOfResidence">
+                                    Proof of Residence
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="proofOfResidence"
+                                    name="proofOfResidence"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                >
+
+                                <small>
+                                    PDF, JPG or PNG — maximum 5 MB
+                                </small>
+
+                            </div>
+
+
+                            <div class="document-upload">
+
+                                <label for="additionalDocuments">
+                                    Additional Documents
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="additionalDocuments"
+                                    name="additionalDocuments"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                    multiple
+                                >
+
+                                <small>
+                                    Upload supporting documents if required.
+                                </small>
+
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- ADDITIONAL INFORMATION -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">8</span>
+                            Additional Information
+                        </legend>
+
+                        <div class="form-group form-group-full">
+
+                            <label for="additionalInformation">
+                                Anything else we should know?
+                            </label>
+
+                            <textarea
+                                id="additionalInformation"
+                                name="additionalInformation"
+                                rows="5"
+                                placeholder="Tell us anything that may help us with your application..."
+                            ></textarea>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- TERMS -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">9</span>
+                            Confirmation
+                        </legend>
+
+                        <div class="checkbox-group">
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="informationAccurate"
+                                    name="informationAccurate"
+                                    required
+                                >
+
+                                <span>
+                                    I confirm that the information I
+                                    have provided is accurate and
+                                    complete.
+                                    <span class="required">*</span>
+                                </span>
+
+                            </label>
+
+
+                            <label>
+                                <input
+                                    type="checkbox"
+                                    id="applicationConsent"
+                                    name="applicationConsent"
+                                    required
+                                >
+
+                                <span>
+                                    I give UniEasy permission to use
+                                    the information I provide for the
+                                    purpose of assisting with my
+                                    university application.
+                                    <span class="required">*</span>
+                                </span>
+
+                            </label>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- SUBMIT -->
+                    <div class="application-submit-area">
+
+                        <div
+                            id="applicationFormMessage"
+                            class="form-message"
+                            role="alert"
+                            aria-live="polite"
+                        ></div>
+
+                        <button
+                            type="submit"
+                            class="submit-application-button"
+                        >
+                            🚀 SUBMIT APPLICATION
+                        </button>
+
+                        <p class="secure-note">
+                            🔒 Your information should be handled
+                            securely and only used for the purpose
+                            explained above.
+                        </p>
+
+                    </div>
+
+                </form>
+
+
+                <!-- =================================================
+                     R5 MESSAGE
+                     APPEARS BELOW THE FORM
+                ================================================== -->
+                <div class="application-price-box">
+
+                    <div class="price-icon">
+                        💰
+                    </div>
+
+                    <div>
+
+                        <h3>
+                            UniEasy Apply For Me Service
+                        </h3>
+
+                        <p>
+                            Our service costs
+                            <strong>R5 per university application</strong>.
+                        </p>
+
+                        <p>
+                            For example, if you choose 2 universities,
+                            the service fee will be R10. If you choose
+                            3 universities, the service fee will be R15.
+                        </p>
+
+                        <p>
+                            The R5 fee is charged <strong>per university</strong>,
+                            not per form.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CLOSE BUTTON -->
+                <div class="close-application-container">
+
+                    <button
+                        type="button"
+                        id="closeApplyForMe"
+                        class="close-application-button"
+                    >
+                        ← Back to Application Options
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             UNIVERSITIES
+        ========================== -->
+        <section
+            id="universities"
+            class="universities-section"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        FIND YOUR UNIVERSITY
+                    </span>
+
+                    <h2>
+                        South African Universities
+                    </h2>
+
+                    <p>
+                        Search and explore universities and visit
+                        their official websites to apply yourself.
+                    </p>
+
+                </div>
+
+
+                <!-- Search and Filters -->
+                <div class="university-filters">
+
+                    <div class="search-box">
+
+                        <label for="universitySearch">
+                            Search universities
+                        </label>
+
+                        <input
+                            type="search"
+                            id="universitySearch"
+                            placeholder="Search by university name..."
+                        >
+
+                    </div>
+
+
+                    <div class="filter-box">
+
+                        <label for="provinceFilter">
+                            Province
+                        </label>
+
+                        <select id="provinceFilter">
+
+                            <option value="all">
+                                All Provinces
+                            </option>
+
+                            <option value="Eastern Cape">
+                                Eastern Cape
+                            </option>
+
+                            <option value="Free State">
+                                Free State
+                            </option>
+
+                            <option value="Gauteng">
+                                Gauteng
+                            </option>
+
+                            <option value="KwaZulu-Natal">
+                                KwaZulu-Natal
+                            </option>
+
+                            <option value="Limpopo">
+                                Limpopo
+                            </option>
+
+                            <option value="Mpumalanga">
+                                Mpumalanga
+                            </option>
+
+                            <option value="North West">
+                                North West
+                            </option>
+
+                            <option value="Northern Cape">
+                                Northern Cape
+                            </option>
+
+                            <option value="Western Cape">
+                                Western Cape
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="filter-box">
+
+                        <label for="typeFilter">
+                            University Type
+                        </label>
+
+                        <select id="typeFilter">
+
+                            <option value="all">
+                                All Types
+                            </option>
+
+                            <option value="University">
+                                University
+                            </option>
+
+                            <option value="University of Technology">
+                                University of Technology
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                </div>
+
+
+                <div class="results-information">
+
+                    <p>
+                        Showing
+                        <strong id="resultCount">26</strong>
+                        universities
+                    </p>
+
+                </div>
+
+
+                <!-- University Cards -->
+                <div
+                    id="universityGrid"
+                    class="university-grid"
+                >
+
+
+                    <!-- CPUT -->
+                    <article
+                        class="university-card"
+                        data-name="Cape Peninsula University of Technology CPUT"
+                        data-province="Western Cape"
+                        data-type="University of Technology"
+                        style="--university-image: url('images/cput.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                CPUT
+                            </span>
+
+                            <h3>
+                                Cape Peninsula University of Technology
+                            </h3>
+
+                            <p>
+                                Western Cape
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.cput.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.cput.ac.za/study-at-cput/undergraduate/apply/step-3"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- CUT -->
+                    <article
+                        class="university-card"
+                        data-name="Central University of Technology CUT"
+                        data-province="Free State"
+                        data-type="University of Technology"
+                        style="--university-image: url('images/cut.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                CUT
+                            </span>
+
+                            <h3>
+                                Central University of Technology
+                            </h3>
+
+                            <p>
+                                Free State
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.cut.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.cut.ac.za/admission-online"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- DUT -->
+                    <article
+                        class="university-card"
+                        data-name="Durban University of Technology DUT"
+                        data-province="KwaZulu-Natal"
+                        data-type="University of Technology"
+                        style="--university-image: url('images/dut.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                DUT
+                            </span>
+
+                            <h3>
+                                Durban University of Technology
+                            </h3>
+
+                            <p>
+                                KwaZulu-Natal
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.dut.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://onlineapps.dut.ac.za/psc/psoapprd/EMPLOYEE/SA/c/VC_OA_STD_MENU.VC_OA_APPL_STRT_FL.GBL?OPRID=ONLAPP"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- MUT -->
+                    <article
+                        class="university-card"
+                        data-name="Mangosuthu University of Technology MUT"
+                        data-province="KwaZulu-Natal"
+                        data-type="University of Technology"
+                        style="--university-image: url('images/mut.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                MUT
+                            </span>
+
+                            <h3>
+                                Mangosuthu University of Technology
+                            </h3>
+
+                            <p>
+                                KwaZulu-Natal
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.mut.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.cao.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- NMU -->
+                    <article
+                        class="university-card"
+                        data-name="Nelson Mandela University NMU"
+                        data-province="Eastern Cape"
+                        data-type="University"
+                        style="--university-image: url('images/mandela.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                NMU
+                            </span>
+
+                            <h3>
+                                Nelson Mandela University
+                            </h3>
+
+                            <p>
+                                Eastern Cape
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.mandela.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://applications.mandela.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- NWU -->
+                    <article
+                        class="university-card"
+                        data-name="North West University NWU"
+                        data-province="North West"
+                        data-type="University"
+                        style="--university-image: url('images/nwu.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                NWU
+                            </span>
+
+                            <h3>
+                                North-West University
+                            </h3>
+
+                            <p>
+                                North West
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.nwu.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://applynow.nwu.ac.za/OnlineApplication/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- RHODES -->
+                    <article
+                        class="university-card"
+                        data-name="Rhodes University RU"
+                        data-province="Eastern Cape"
+                        data-type="University"
+                        style="--university-image: url('images/rhodes.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                RU
+                            </span>
+
+                            <h3>
+                                Rhodes University
+                            </h3>
+
+                            <p>
+                                Eastern Cape
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.ru.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://ross.ru.ac.za/ugadmissions"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- SMU -->
+                    <article
+                        class="university-card"
+                        data-name="Sefako Makgatho Health Sciences University SMU"
+                        data-province="Gauteng"
+                        data-type="University"
+                        style="--university-image: url('images/smu.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                SMU
+                            </span>
+
+                            <h3>
+                                Sefako Makgatho Health Sciences University
+                            </h3>
+
+                            <p>
+                                Gauteng
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.smu.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.smu.ac.za/students/apply/online-application/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- SPU -->
+                    <article
+                        class="university-card"
+                        data-name="Sol Plaatje University SPU"
+                        data-province="Northern Cape"
+                        data-type="University"
+                        style="--university-image: url('images/spu.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                SPU
+                            </span>
+
+                            <h3>
+                                Sol Plaatje University
+                            </h3>
+
+                            <p>
+                                Northern Cape
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.spu.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.spu.ac.za/index.php/apply/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- STELLENBOSCH -->
+                    <article
+                        class="university-card"
+                        data-name="Stellenbosch University SU"
+                        data-province="Western Cape"
+                        data-type="University"
+                        style="--university-image: url('images/stellenbosch.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                SU
+                            </span>
+
+                            <h3>
+                                Stellenbosch University
+                            </h3>
+
+                            <p>
+                                Western Cape
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.sun.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://student.sun.ac.za/apply/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- TUT -->
+                    <article
+                        class="university-card"
+                        data-name="Tshwane University of Technology TUT"
+                        data-province="Gauteng"
+                        data-type="University of Technology"
+                        style="--university-image: url('images/tut.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                TUT
+                            </span>
+
+                            <h3>
+                                Tshwane University of Technology
+                            </h3>
+
+                            <p>
+                                Gauteng
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.tut.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://ienabler.tut.ac.za/pls/prodi41/w99pkg.mi_login"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UCT -->
+                    <article
+                        class="university-card"
+                        data-name="University of Cape Town UCT"
+                        data-province="Western Cape"
+                        data-type="University"
+                        style="--university-image: url('images/uct.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UCT
+                            </span>
+
+                            <h3>
+                                University of Cape Town
+                            </h3>
+
+                            <p>
+                                Western Cape
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.uct.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://applyonline.uct.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UFH -->
+                    <article
+                        class="university-card"
+                        data-name="University of Fort Hare UFH"
+                        data-province="Eastern Cape"
+                        data-type="University"
+                        style="--university-image: url('images/fort-hare.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UFH
+                            </span>
+
+                            <h3>
+                                University of Fort Hare
+                            </h3>
+
+                            <p>
+                                Eastern Cape
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.ufh.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.ufh.ac.za/apply/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UJ -->
+                    <article
+                        class="university-card"
+                        data-name="University of Johannesburg UJ"
+                        data-province="Gauteng"
+                        data-type="University"
+                        style="--university-image: url('images/uj.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UJ
+                            </span>
+
+                            <h3>
+                                University of Johannesburg
+                            </h3>
+
+                            <p>
+                                Gauteng
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.uj.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.uj.ac.za/admissions-aid/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UKZN -->
+                    <article
+                        class="university-card"
+                        data-name="University of KwaZulu-Natal UKZN"
+                        data-province="KwaZulu-Natal"
+                        data-type="University"
+                        style="--university-image: url('images/ukzn.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UKZN
+                            </span>
+
+                            <h3>
+                                University of KwaZulu-Natal
+                            </h3>
+
+                            <p>
+                                KwaZulu-Natal
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.ukzn.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://caocheck.ukzn.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UL -->
+                    <article
+                        class="university-card"
+                        data-name="University of Limpopo UL"
+                        data-province="Limpopo"
+                        data-type="University"
+                        style="--university-image: url('images/ul.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UL
+                            </span>
+
+                            <h3>
+                                University of Limpopo
+                            </h3>
+
+                            <p>
+                                Limpopo
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.ul.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.ul.ac.za/index.php/apply/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UMP -->
+                    <article
+                        class="university-card"
+                        data-name="University of Mpumalanga UMP"
+                        data-province="Mpumalanga"
+                        data-type="University"
+                        style="--university-image: url('images/ump.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UMP
+                            </span>
+
+                            <h3>
+                                University of Mpumalanga
+                            </h3>
+
+                            <p>
+                                Mpumalanga
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.ump.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.ump.ac.za/apply-now"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UP -->
+                    <article
+                        class="university-card"
+                        data-name="University of Pretoria UP"
+                        data-province="Gauteng"
+                        data-type="University"
+                        style="--university-image: url('images/up.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UP
+                            </span>
+
+                            <h3>
+                                University of Pretoria
+                            </h3>
+
+                            <p>
+                                Gauteng
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.up.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.up.ac.za/online-application"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UNISA -->
+                    <article
+                        class="university-card"
+                        data-name="University of South Africa UNISA"
+                        data-province="Gauteng"
+                        data-type="University"
+                        style="--university-image: url('images/unisa.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UNISA
+                            </span>
+
+                            <h3>
+                                University of South Africa
+                            </h3>
+
+                            <p>
+                                Gauteng
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.unisa.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.unisa.ac.za/sites/corporate/default/Apply-for-admission"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UFS -->
+                    <article
+                        class="university-card"
+                        data-name="University of the Free State UFS"
+                        data-province="Free State"
+                        data-type="University"
+                        style="--university-image: url('images/ufs.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UFS
+                            </span>
+
+                            <h3>
+                                University of the Free State
+                            </h3>
+
+                            <p>
+                                Free State
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.ufs.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://apply.ufs.ac.za/Application/Start"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UWC -->
+                    <article
+                        class="university-card"
+                        data-name="University of the Western Cape UWC"
+                        data-province="Western Cape"
+                        data-type="University"
+                        style="--university-image: url('images/uwc.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UWC
+                            </span>
+
+                            <h3>
+                                University of the Western Cape
+                            </h3>
+
+                            <p>
+                                Western Cape
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.uwc.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://student.uwc.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- WITS -->
+                    <article
+                        class="university-card"
+                        data-name="University of the Witwatersrand WITS"
+                        data-province="Gauteng"
+                        data-type="University"
+                        style="--university-image: url('images/wits.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                WITS
+                            </span>
+
+                            <h3>
+                                University of the Witwatersrand
+                            </h3>
+
+                            <p>
+                                Gauteng
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.wits.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://self-service.wits.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- VUT -->
+                    <article
+                        class="university-card"
+                        data-name="Vaal University of Technology VUT"
+                        data-province="Gauteng"
+                        data-type="University of Technology"
+                        style="--university-image: url('images/vut.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                VUT
+                            </span>
+
+                            <h3>
+                                Vaal University of Technology
+                            </h3>
+
+                            <p>
+                                Gauteng
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.vut.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://ienabler.vut.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UNIZULU -->
+                    <article
+                        class="university-card"
+                        data-name="University of Zululand UNIZULU"
+                        data-province="KwaZulu-Natal"
+                        data-type="University"
+                        style="--university-image: url('images/unizulu.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UNIZULU
+                            </span>
+
+                            <h3>
+                                University of Zululand
+                            </h3>
+
+                            <p>
+                                KwaZulu-Natal
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.unizulu.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.unizulu.ac.za/apply/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- WSU -->
+                    <article
+                        class="university-card"
+                        data-name="Walter Sisulu University WSU"
+                        data-province="Eastern Cape"
+                        data-type="University"
+                        style="--university-image: url('images/wsu.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                WSU
+                            </span>
+
+                            <h3>
+                                Walter Sisulu University
+                            </h3>
+
+                            <p>
+                                Eastern Cape
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.wsu.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://applications.wsu.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                    <!-- UNIVEN -->
+                    <article
+                        class="university-card"
+                        data-name="University of Venda UNIVEN"
+                        data-province="Limpopo"
+                        data-type="University"
+                        style="--university-image: url('images/univen.jpg');"
+                    >
+                        <div class="university-card-content">
+
+                            <span class="university-code">
+                                UNIVEN
+                            </span>
+
+                            <h3>
+                                University of Venda
+                            </h3>
+
+                            <p>
+                                Limpopo
+                            </p>
+
+                            <div class="university-buttons">
+
+                                <a
+                                    href="https://www.univen.ac.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button"
+                                >
+                                    Official Website
+                                </a>
+
+                                <a
+                                    href="https://www.univen.ac.za/apply/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="university-button apply"
+                                >
+                                    Apply
+                                </a>
+
+                            </div>
+
+                        </div>
+                    </article>
+
+
+                </div>
+
+
+                <!-- No Results -->
+                <div
+                    id="noResults"
+                    class="no-results"
+                    hidden
+                >
+
+                    <h3>
+                        No universities found
+                    </h3>
+
+                    <p>
+                        Try changing your search or filters.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             HOW IT WORKS
+        ========================== -->
+        <section
+            id="how-it-works"
+            class="how-it-works-section"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        SIMPLE PROCESS
+                    </span>
+
+                    <h2>
+                        How UniEasy Works
+                    </h2>
+
+                </div>
+
+
+                <div class="steps-grid">
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <h3>
+                            Find a University
+                        </h3>
+
+                        <p>
+                            Search through South African universities
+                            and explore your options.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <h3>
+                            Choose How to Apply
+                        </h3>
+
+                        <p>
+                            Apply yourself through the official
+                            university website or choose Apply For Me.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <h3>
+                            Submit Your Information
+                        </h3>
+
+                        <p>
+                            If you choose Apply For Me, provide the
+                            required information and documents.
+                        </p>
+
+                    </div>
+
+
+                    <div class="step-card">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <h3>
+                            Track Your Application
+                        </h3>
+
+                        <p>
+                            Future UniEasy accounts will allow students
+                            to track their application progress.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+        <section
+            id="about"
+            class="about-section"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        ABOUT UNIEASY
+                    </span>
+
+                    <h2>
+                        Making University Applications Easier
+                    </h2>
+
+                    <p>
+                        UniEasy is designed to give students one
+                        convenient place to discover universities
+                        and understand their application options.
+                    </p>
+
+                </div>
+
+
+                <div class="features-grid">
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            🔎
+                        </div>
+
+                        <h3>
+                            Easy Discovery
+                        </h3>
+
+                        <p>
+                            Find universities without having to search
+                            through many different websites first.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            ⚡
+                        </div>
+
+                        <h3>
+                            Simple Process
+                        </h3>
+
+                        <p>
+                            UniEasy is designed around making the
+                            application journey easier to understand.
+                        </p>
+
+                    </div>
+
+
+                    <div class="feature-card">
+
+                        <div class="feature-icon">
+                            📱
+                        </div>
+
+                        <h3>
+                            Student Friendly
+                        </h3>
+
+                        <p>
+                            The website is designed to work across
+                            computers, tablets and mobile phones.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             FAQ
+        ========================== -->
+        <section
+            id="faq"
+            class="faq-section"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        QUESTIONS
+                    </span>
+
+                    <h2>
+                        Frequently Asked Questions
+                    </h2>
+
+                </div>
+
+
+                <div class="faq-container">
+
+                    <details class="faq-item">
+
+                        <summary>
+                            What is UniEasy?
+                        </summary>
+
+                        <p>
+                            UniEasy is a platform designed to help
+                            students find South African universities
+                            and make the application process easier.
+                        </p>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            What does Apply By Myself mean?
+                        </summary>
+
+                        <p>
+                            Apply By Myself takes you to the relevant
+                            university's application website so that
+                            you can complete the application yourself.
+                        </p>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            What does Apply For Me mean?
+                        </summary>
+
+                        <p>
+                            Apply For Me is a service where a student
+                            provides the required information and
+                            documents so that UniEasy can assist with
+                            the application process.
+                        </p>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            How much does Apply For Me cost?
+                        </summary>
+
+                        <p>
+                            The planned service fee is R5 per university
+                            application.
+                        </p>
+
+                    </details>
+
+
+                    <details class="faq-item">
+
+                        <summary>
+                            Will my application be submitted immediately?
+                        </summary>
+
+                        <p>
+                            The current UniEasy website is a front-end
+                            prototype. A secure backend and application
+                            management system still need to be connected
+                            before real applications can be submitted
+                            through UniEasy.
+                        </p>
+
+                    </details>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+        <section
+            id="contact"
+            class="contact-section"
+        >
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">
+                        GET IN TOUCH
+                    </span>
+
+                    <h2>
+                        Contact UniEasy
+                    </h2>
+
+                    <p>
+                        Have a question or suggestion? Get in touch
+                        with us.
+                    </p>
+
+                </div>
+
+
+                <div class="contact-container">
+
+                    <div class="contact-information">
+
+                        <h3>
+                            Contact Information
+                        </h3>
+
+                        <p>
+                            📧
+                            <a href="mailto:unieasyy@gmail.com">
+                                unieasyy@gmail.com
+                            </a>
+                        </p>
+
+                        <p>
+                            📞
+                            <a href="tel:+27674435498">
+                                067 443 5498
+                            </a>
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        id="contactForm"
+                        class="contact-form"
+                    >
+
+                        <div class="form-group">
+
+                            <label for="contactName">
+                                Name
+                            </label>
+
+                            <input
+                                type="text"
+                                id="contactName"
+                                name="name"
+                                placeholder="Your name"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="contactEmail">
+                                Email
+                            </label>
+
+                            <input
+                                type="email"
+                                id="contactEmail"
+                                name="email"
+                                placeholder="Your email"
+                                required
+                            >
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="contactMessage">
+                                Message
+                            </label>
+
+                            <textarea
+                                id="contactMessage"
+                                name="message"
+                                rows="5"
+                                placeholder="Your message..."
+                                required
+                            ></textarea>
+
+                        </div>
+
+
+                        <button
+                            type="submit"
+                            class="submit-contact-button"
+                        >
+                            Send Message
+                        </button>
+
+                    </form>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+    <footer class="site-footer">
+
+        <div class="container footer-container">
+
+            <div class="footer-brand">
+
+                <a href="#home" class="logo">
+                    <span class="logo-icon">U</span>
+                    <span class="logo-text">UniEasy</span>
+                </a>
+
+                <p>
+                    Helping students make university applications easy.
+                </p>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="#home">
+                    Home
+                </a>
+
+                <a href="#universities">
+                    Universities
+                </a>
+
+                <a href="#about">
+                    About
+                </a>
+
+                <a href="#faq">
+                    FAQ
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+            </div>
+
+
+            <div class="footer-links">
+
+                <h3>
+                    Legal
+                </h3>
+
+                <a href="#privacy">
+                    Privacy
+                </a>
+
+                <a href="#terms">
+                    Terms
+                </a>
+
+                <a href="#cookies">
+                    Cookies
+                </a>
+
+                <button
+                    type="button"
+                    id="cookieSettingsButton"
+                    class="footer-button"
+                >
+                    Cookie Settings
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <div class="container">
+
+                <p>
+                    ©
+                    <span id="currentYear"></span>
+                    UniEasy. All rights reserved.
+                </p>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         COOKIE BANNER
+    ========================== -->
+    <div
+        id="cookieBanner"
+        class="cookie-banner"
+        role="dialog"
+        aria-label="Cookie consent"
+        hidden
+    >
+
+        <div class="cookie-content">
+
+            <div>
+
+                <h2>
+                    🍪 Cookies on UniEasy
+                </h2>
+
+                <p>
+                    UniEasy uses essential cookies to remember your
+                    preferences. Optional cookies can be accepted
+                    or rejected by you.
+                </p>
+
+            </div>
+
+
+            <div class="cookie-buttons">
+
+                <button
+                    type="button"
+                    id="rejectCookies"
+                    class="cookie-reject"
+                >
+                    Reject Optional
+                </button>
+
+                <button
+                    type="button"
+                    id="acceptCookies"
+                    class="cookie-accept"
+                >
+                    Accept All
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =========================
+         BACK TO TOP
+    ========================== -->
+    <button
+        type="button"
+        id="backToTop"
+        class="back-to-top"
+        aria-label="Back to top"
+    >
+        ↑
+    </button>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
