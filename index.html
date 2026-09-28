@@ -274,10 +274,9 @@
                 <form
                     id="applyForMeForm"
                     class="application-form"
-                    action="https://formsubmit.co/ajax/unieasyy@gmail.com"
+                    action="https://formsubmit.co/unieasyy@gmail.com"
                     method="POST"
                     enctype="multipart/form-data"
-                    novalidate
                 >
 
                     <!-- Settings for FormSubmit -->
@@ -2175,22 +2174,8 @@
                 data.append( "applicationReference", reference );
                 data.append( "totalToPay", "R" + ( countUniversities() * FEE_PER_UNIVERSITY ).toFixed( 2 ) );
 
-                fetch( applyForm.action, {
-                    method: "POST",
-                    body: data,
-                    headers: { "Accept": "application/json" }
-                } )
-                    .then( function ( response ) {
-                        if ( !response.ok ) {
-                            throw new Error( "Server error" );
-                        }
-                        finishSubmit( reference );
-                    } )
-                    .catch( function () {
-                        showMessage( "Something went wrong sending your application. Please check your internet and try again.", "error" );
-                        submitButton.disabled = false;
-                        submitButton.textContent = "SUBMIT APPLICATION";
-                    } );
+                applyForm.submit();
+                    
             }
 
             function finishSubmit( reference ) {
