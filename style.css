@@ -1,5 +1,6 @@
 /* =========================================================
    UNIEASY - MODERN UNIVERSITY APPLICATION WEBSITE
+   Theme: deep green primary, gold accent, white and black
    ========================================================= */
 
 /* =========================
@@ -65,10 +66,10 @@ img {
 ========================= */
 
 :root {
-    --primary: #2563eb;
-    --primary-dark: #1d4ed8;
-    --secondary: #7c3aed;
-    --accent: #06b6d4;
+    --primary: #166534;
+    --primary-dark: #14532d;
+    --secondary: #14532d;
+    --accent: #ca8a04;
 
     --dark: #0f172a;
     --text: #172033;
@@ -76,9 +77,10 @@ img {
 
     --white: #ffffff;
     --light: #f8fafc;
-    --light-blue: #eff6ff;
+    --light-blue: #ffffff;
 
     --border: #e2e8f0;
+    --red-border: #c7dccd; /* soft green edge keeps white boxes visible */
 
     --success: #16a34a;
     --danger: #dc2626;
@@ -174,7 +176,7 @@ img {
         var(--primary),
         var(--secondary)
     );
-    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+    box-shadow: 0 8px 20px rgba(22, 101, 52, 0.25);
 }
 
 .logo-text {
@@ -258,7 +260,7 @@ img {
     display: none;
     width: 42px;
     height: 42px;
-    border: 0;
+    border: 1px solid var(--red-border);
     border-radius: 10px;
     background: var(--light-blue);
     color: var(--primary);
@@ -279,18 +281,18 @@ img {
     background:
         radial-gradient(
             circle at 15% 20%,
-            rgba(37, 99, 235, 0.13),
+            rgba(22, 101, 52, 0.10),
             transparent 28%
         ),
         radial-gradient(
             circle at 85% 20%,
-            rgba(124, 58, 237, 0.13),
+            rgba(20, 83, 45, 0.08),
             transparent 30%
         ),
         linear-gradient(
             180deg,
             #ffffff,
-            #f8fbff
+            #ffffff
         );
 }
 
@@ -298,12 +300,12 @@ img {
     background:
         radial-gradient(
             circle at 15% 20%,
-            rgba(37, 99, 235, 0.18),
+            rgba(22, 101, 52, 0.18),
             transparent 28%
         ),
         radial-gradient(
             circle at 85% 20%,
-            rgba(124, 58, 237, 0.18),
+            rgba(20, 83, 45, 0.18),
             transparent 30%
         ),
         #0b1220;
@@ -322,7 +324,7 @@ img {
     height: 300px;
     right: -120px;
     bottom: -120px;
-    background: rgba(6, 182, 212, 0.08);
+    background: rgba(202, 138, 4, 0.08);
 }
 
 .hero-section::after {
@@ -330,7 +332,7 @@ img {
     height: 220px;
     left: -90px;
     bottom: 100px;
-    background: rgba(124, 58, 237, 0.07);
+    background: rgba(20, 83, 45, 0.07);
 }
 
 .hero-container {
@@ -351,8 +353,8 @@ img {
     gap: 8px;
     padding: 9px 17px;
     border-radius: 999px;
-    background: #eff6ff;
-    border: 1px solid #dbeafe;
+    background: #ffffff;
+    border: 1px solid var(--red-border);
     color: var(--primary);
     font-size: 0.85rem;
     font-weight: 700;
@@ -361,8 +363,8 @@ img {
 }
 
 .dark-mode .hero-badge {
-    background: #172554;
-    border-color: #1e3a8a;
+    background: #052e16;
+    border-color: #14532d;
 }
 
 @keyframes floatBadge {
@@ -468,7 +470,7 @@ img {
 .apply-choice:hover {
     transform: translateY(-8px);
     box-shadow: var(--shadow-lg);
-    border-color: #bfdbfe;
+    border-color: #86b797;
 }
 
 .apply-choice-icon {
@@ -478,12 +480,14 @@ img {
     place-items: center;
     border-radius: 16px;
     background: var(--light-blue);
+    border: 1px solid var(--red-border);
     font-size: 1.6rem;
     margin-bottom: 18px;
 }
 
 .dark-mode .apply-choice-icon {
-    background: #172554;
+    background: #052e16;
+    border-color: #14532d;
 }
 
 .apply-choice h2 {
@@ -525,19 +529,19 @@ img {
     background: linear-gradient(
         135deg,
         var(--primary),
-        #3b82f6
+        #15803d
     );
-    box-shadow: 0 10px 22px rgba(37, 99, 235, 0.22);
+    box-shadow: 0 10px 22px rgba(22, 101, 52, 0.22);
 }
 
 .apply-btn-secondary {
     color: white;
     background: linear-gradient(
         135deg,
-        var(--secondary),
-        #9333ea
+        #a16207,
+        #ca8a04
     );
-    box-shadow: 0 10px 22px rgba(124, 58, 237, 0.22);
+    box-shadow: 0 10px 22px rgba(161, 98, 7, 0.22);
 }
 
 .apply-btn:hover {
@@ -595,20 +599,20 @@ img {
     background:
         linear-gradient(
             180deg,
-            #eff6ff,
+            #ffffff,
             #ffffff
         );
-    border-top: 1px solid #dbeafe;
+    border-top: 1px solid var(--red-border);
 }
 
 .dark-mode .apply-for-me-section {
     background:
         linear-gradient(
             180deg,
-            #111c32,
+            #0a1a10,
             #0b1220
         );
-    border-color: #1e3a5f;
+    border-color: #14532d;
 }
 
 .application-header {
@@ -786,7 +790,7 @@ input:focus,
 select:focus,
 textarea:focus {
     border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.11);
+    box-shadow: 0 0 0 4px rgba(22, 101, 52, 0.11);
 }
 
 textarea {
@@ -892,13 +896,13 @@ textarea {
     );
     font-weight: 800;
     font-size: 0.95rem;
-    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.2);
+    box-shadow: 0 15px 30px rgba(22, 101, 52, 0.2);
     transition: var(--transition);
 }
 
 .submit-application-button:hover {
     transform: translateY(-4px);
-    box-shadow: 0 20px 35px rgba(37, 99, 235, 0.28);
+    box-shadow: 0 20px 35px rgba(22, 101, 52, 0.28);
 }
 
 .submit-application-button:active {
@@ -941,24 +945,19 @@ textarea {
     display: flex;
     align-items: flex-start;
     gap: 20px;
-    border: 1px solid #bfdbfe;
+    border: 1px solid var(--red-border);
     border-radius: 20px;
-    background:
-        linear-gradient(
-            135deg,
-            #eff6ff,
-            #faf5ff
-        );
+    background: #ffffff;
     box-shadow: var(--shadow-sm);
 }
 
 .dark-mode .application-price-box {
     background: linear-gradient(
         135deg,
-        #172554,
-        #2e1065
+        #052e16,
+        #04220f
     );
-    border-color: #3730a3;
+    border-color: #14532d;
 }
 
 .price-icon {
@@ -969,6 +968,7 @@ textarea {
     place-items: center;
     border-radius: 16px;
     background: white;
+    border: 1px solid var(--red-border);
     font-size: 1.5rem;
 }
 
@@ -1119,7 +1119,7 @@ textarea {
     inset: 0;
     background: linear-gradient(
         135deg,
-        rgba(37, 99, 235, 0.2),
+        rgba(22, 101, 52, 0.25),
         transparent 45%
     );
     opacity: 0;
@@ -1158,7 +1158,7 @@ textarea {
 }
 
 .university-card p {
-    color: #dbeafe;
+    color: #ffffff;
     font-size: 0.88rem;
     margin-bottom: 17px;
 }
@@ -1328,12 +1328,14 @@ textarea {
     place-items: center;
     border-radius: 15px;
     background: var(--light-blue);
+    border: 1px solid var(--red-border);
     font-size: 1.5rem;
     margin-bottom: 20px;
 }
 
 .dark-mode .feature-icon {
-    background: #172554;
+    background: #052e16;
+    border-color: #14532d;
 }
 
 .feature-card h3 {
@@ -1753,7 +1755,7 @@ textarea {
     }
 
     .dark-mode .main-navigation > a:hover {
-        background: #172554;
+        background: #052e16;
     }
 
     .dark-mode-button {
