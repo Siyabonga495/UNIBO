@@ -199,9 +199,6 @@
         </section>
 
 
-        </section>
-
-
         <!-- =====================================================
              APPLY FOR ME
              THIS ENTIRE SECTION IS HIDDEN INITIALLY
@@ -269,7 +266,13 @@
                      APPLICATION FORM
                      action, method, enctype and hidden fields
                      let this form email FormSubmit, which
-                     forwards it to unieasyy@gmail.com
+                     forwards it (WITH file attachments) to
+                     unieasyy@gmail.com. This is a real, full
+                     page POST (not AJAX) because FormSubmit
+                     only attaches files on a real POST.
+                     _next tells FormSubmit where to send the
+                     browser back to once it's done, so we can
+                     show our own success message again.
                 ========================== -->
                 <form
                     id="applyForMeForm"
@@ -283,6 +286,12 @@
                     <input type="hidden" name="_subject" value="New UniEasy Application">
                     <input type="hidden" name="_template" value="table">
                     <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_next" id="formNextUrl" value="">
+
+                    <!-- Filled in with JS right before submitting,
+                         so FormSubmit forwards these too -->
+                    <input type="hidden" name="applicationReference" id="applicationReferenceField" value="">
+                    <input type="hidden" name="totalToPay" id="totalToPayField" value="">
 
 
                     <!-- PERSONAL INFORMATION -->
@@ -1682,35 +1691,47 @@
                 <div
                     id="applicationSuccess"
                     hidden
-                    style="max-width: 560px; margin: 24px auto; padding: 40px 32px; text-align: center; border: 1px solid rgba(127,127,127,0.25); border-radius: 18px; background: #ffffff; box-shadow: 0 8px 24px rgba(0,0,0,0.08);"
+                    style="max-width: 560px; margin: 24px auto; padding: 44px 36px; text-align: center; border: 1px solid rgba(37,99,235,0.18); border-radius: 20px; background: #ffffff; box-shadow: 0 12px 32px rgba(15,23,42,0.10);"
                 >
 
-                    <div style="display: flex; align-items: center; justify-content: center; width: 68px; height: 68px; margin: 0 auto 18px; border-radius: 50%; background: #16a34a; color: #ffffff; font-size: 2.1rem;">
+                    <div style="display: flex; align-items: center; justify-content: center; width: 72px; height: 72px; margin: 0 auto 20px; border-radius: 50%; background: #2563eb; color: #ffffff; font-size: 2.2rem; box-shadow: 0 10px 22px rgba(37,99,235,0.28);">
                         ✓
                     </div>
 
-                    <h3>
-                        Application Sent
+                    <h3 style="font-size: 1.5rem; margin-bottom: 8px;">
+                        Application Submitted Successfully
                     </h3>
 
-                    <p>
-                        Thank you. Your application and proof of
-                        payment have been emailed to UniEasy.
+                    <p style="max-width: 400px; margin: 0 auto 22px; opacity: 0.75;">
+                        Thank you for applying with UniEasy. Your
+                        application and proof of payment have been
+                        sent through to our team for processing.
                     </p>
 
-                    <p>
-                        Application reference:
-                        <strong id="successReference"></strong>
-                    </p>
+                    <div style="display: inline-flex; flex-direction: column; align-items: center; gap: 4px; padding: 16px 28px; margin-bottom: 22px; border: 1px dashed #2563eb; border-radius: 14px; background: rgba(37,99,235,0.05);">
+                        <small style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.72rem; opacity: 0.65;">
+                            Application Code
+                        </small>
+                        <strong id="successReference" style="font-size: 1.4rem; letter-spacing: 1.5px; color: #2563eb;"></strong>
+                    </div>
 
-                    <p>
-                        Universities:
-                        <strong id="successUniversities"></strong>
-                    </p>
+                    <div style="display: flex; justify-content: center; gap: 36px; margin-bottom: 28px; flex-wrap: wrap;">
 
-                    <p>
-                        Service fee:
-                        <strong id="successTotal"></strong>
+                        <div>
+                            <small style="display: block; opacity: 0.6; margin-bottom: 3px;">Universities</small>
+                            <strong id="successUniversities"></strong>
+                        </div>
+
+                        <div>
+                            <small style="display: block; opacity: 0.6; margin-bottom: 3px;">Service Fee</small>
+                            <strong id="successTotal"></strong>
+                        </div>
+
+                    </div>
+
+                    <p style="font-size: 0.85rem; opacity: 0.65; margin-bottom: 24px;">
+                        Please keep your application code for any
+                        future correspondence regarding this application.
                     </p>
 
                     <button
@@ -1842,13 +1863,17 @@
         <!-- =====================================================
              This <script> makes the whole thing work:
              opening / closing Apply For Me, the payment box,
-             checking the form, and sending it by email.
+             checking the form, sending it by email, and showing
+             the success message when the user comes back from
+             FormSubmit after a successful send.
         ====================================================== -->
         <script>
         ( function () {
 
             const FEE_PER_UNIVERSITY = 5;
             const MAX_FILE_SIZE = 5 * 1024 * 1024;
+            const STORAGE_KEY = "uniEasyApplicationResult";
+            const RETURN_PARAM = "applicationSent";
 
             const pageBody = document.body;
             const applySection = document.getElementById( "applyForMeSection" );
@@ -1864,6 +1889,9 @@
             const submitButton = applyForm.querySelector( ".submit-application-button" );
             const bankDetailsBox = document.getElementById( "bankDetailsBox" );
             const cardDetailsBox = document.getElementById( "cardDetailsBox" );
+            const nextUrlField = document.getElementById( "formNextUrl" );
+            const applicationReferenceField = document.getElementById( "applicationReferenceField" );
+            const totalToPayField = document.getElementById( "totalToPayField" );
 
             const partsToHide = [
                 applyForm,
@@ -2140,15 +2168,23 @@
 
 
             // SEND FORM BY EMAIL
+            // This is a real, full page submit (not fetch/AJAX),
+            // because FormSubmit only attaches uploaded files when
+            // the form is submitted this way. Since the page will
+            // navigate away and back, we save the reference number
+            // and totals in sessionStorage first, and tell FormSubmit
+            // (via _next) to send the browser back to this same page
+            // with a marker in the URL, so we can show the success
+            // message again once we land back here.
             document.addEventListener( "submit", function ( event ) {
                 if ( event.target !== applyForm ) {
                     return;
                 }
 
-                event.preventDefault();
-                event.stopPropagation();
-
                 if ( !checkForm() ) {
+                    event.preventDefault();
+                    event.stopPropagation();
+
                     showMessage( "Please fix the fields marked in red and try again.", "error" );
                     firstError.scrollIntoView( { behavior: "smooth", block: "center" } );
 
@@ -2160,30 +2196,52 @@
                 }
 
                 showMessage( "", "" );
-                sendApplication();
+                prepareAndSubmit();
 
             }, true );
 
-            function sendApplication() {
+            function prepareAndSubmit() {
                 const reference = "UEA-" + Date.now().toString( 36 ).toUpperCase();
+                const universities = countUniversities();
+                const total = universities * FEE_PER_UNIVERSITY;
+
+                // Save the details so we can show them again
+                // once FormSubmit sends the browser back here.
+                try {
+                    sessionStorage.setItem( STORAGE_KEY, JSON.stringify( {
+                        reference: reference,
+                        universities: universities,
+                        total: total
+                    } ) );
+                } catch ( error ) {
+                    // sessionStorage may be unavailable (e.g. private
+                    // browsing) — the form will still send, we just
+                    // won't be able to show the reference afterwards.
+                }
+
+                // Tell FormSubmit to send the browser back to this
+                // same page with a marker so we know to show success.
+                const baseUrl = window.location.origin + window.location.pathname;
+                nextUrlField.value = baseUrl + "?" + RETURN_PARAM + "=1";
+
+                applicationReferenceField.value = reference;
+                totalToPayField.value = "R" + total.toFixed( 2 );
 
                 submitButton.disabled = true;
                 submitButton.textContent = "SENDING...";
 
-                const data = new FormData( applyForm );
-                data.append( "applicationReference", reference );
-                data.append( "totalToPay", "R" + ( countUniversities() * FEE_PER_UNIVERSITY ).toFixed( 2 ) );
-
-                applyForm.submit();
-                    
+                // No preventDefault here — let the browser submit
+                // the form normally so files are attached correctly.
             }
 
-            function finishSubmit( reference ) {
+            function finishSubmit( reference, universities, total ) {
                 applicationSent = true;
 
+                openApplyForMe();
+
                 document.getElementById( "successReference" ).textContent = reference;
-                document.getElementById( "successUniversities" ).textContent = countUniversities();
-                document.getElementById( "successTotal" ).textContent = "R" + ( countUniversities() * FEE_PER_UNIVERSITY ).toFixed( 2 );
+                document.getElementById( "successUniversities" ).textContent = universities;
+                document.getElementById( "successTotal" ).textContent = "R" + total.toFixed( 2 );
 
                 partsToHide.forEach( function ( part ) {
                     if ( part ) {
@@ -2222,10 +2280,51 @@
                 updatePayment();
             }
 
+            // Runs once on page load. If we've just been sent back
+            // here by FormSubmit after a successful send, show the
+            // success message using the details we saved earlier.
+            function checkForReturnFromSubmit() {
+                const params = new URLSearchParams( window.location.search );
+
+                if ( params.get( RETURN_PARAM ) !== "1" ) {
+                    return;
+                }
+
+                let saved = null;
+                try {
+                    const raw = sessionStorage.getItem( STORAGE_KEY );
+                    if ( raw ) {
+                        saved = JSON.parse( raw );
+                        sessionStorage.removeItem( STORAGE_KEY );
+                    }
+                } catch ( error ) {
+                    saved = null;
+                }
+
+                if ( saved ) {
+                    finishSubmit( saved.reference, saved.universities, saved.total );
+                } else {
+                    // We know it was sent, we just lost the details
+                    // (e.g. sessionStorage was unavailable) — still
+                    // show a generic success message.
+                    finishSubmit( "—", 0, 0 );
+                }
+
+                // Clean the marker out of the URL so refreshing the
+                // page doesn't show the success message again.
+                params.delete( RETURN_PARAM );
+                const cleanedSearch = params.toString();
+                const cleanedUrl = window.location.pathname
+                    + ( cleanedSearch ? "?" + cleanedSearch : "" )
+                    + window.location.hash;
+                window.history.replaceState( {}, document.title, cleanedUrl );
+            }
+
 
             // START
             showPaymentMethodDetails();
             updatePayment();
+            checkForReturnFromSubmit();
 
         } )();
         </script>
