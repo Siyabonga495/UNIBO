@@ -342,61 +342,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
-   /* =========================
-       APPLICATION FORM
-    ========================== */
-
-    const applicationForm =
-        document.getElementById("applyForMeForm");
-
-    const applicationMessage =
-        document.getElementById(
-            "applicationFormMessage"
-        );
-
-
-    if (applicationForm) {
-
-        applicationForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-
-                if (!applicationForm.checkValidity()) {
-
-                    applicationForm.reportValidity();
-
-                    return;
-
-                }
-
-
-                if (applicationMessage) {
-
-                    applicationMessage.className =
-                        "form-message success";
-
-                    applicationMessage.innerHTML =
-                        "✅ Your information has been completed successfully. " +
-                        "The current UniEasy website is a demonstration, " +
-                        "so no real application has been submitted yet.";
-
-                }
-
-
-                applicationMessage.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                });
-
-            }
-        );
-
-    }
-
-
     /* =========================
        FILE SIZE VALIDATION
     ========================== */
