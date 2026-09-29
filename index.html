@@ -140,7 +140,7 @@
                                 official application system.
                             </p>
 
-                            <a
+                            
                                 href="#universities"
                                 class="apply-btn apply-btn-primary"
                             >
@@ -182,20 +182,6 @@
 
             </div>
 
-        </section>
-
-
-        <!-- =====================================================
-             APPLY FOR ME
-             THIS ENTIRE SECTION IS HIDDEN INITIALLY
-        ====================================================== -->
-        </section>
-
-
-        <!-- =====================================================
-             APPLY FOR ME
-             THIS ENTIRE SECTION IS HIDDEN INITIALLY
-        ====================================================== -->
         </section>
 
 
@@ -264,33 +250,30 @@
 
                 <!-- =========================
                      APPLICATION FORM
-                     action, method, enctype and hidden fields
-                     let this form email FormSubmit, which
-                     forwards it (WITH file attachments) to
-                     unieasyy@gmail.com. This is a real, full
-                     page POST (not AJAX) because FormSubmit
-                     only attaches files on a real POST.
-                     _next tells FormSubmit where to send the
-                     browser back to once it's done, so we can
-                     show our own success message again.
+                     Sends to Web3Forms, which forwards it
+                     (WITH file attachments) to unieasyy@gmail.com.
+                     Web3Forms supports normal fetch()/AJAX submissions
+                     with files, so we do not need a full page
+                     reload like some other form services require.
                 ========================== -->
                 <form
                     id="applyForMeForm"
                     class="application-form"
-                    action="https://formsubmit.co/unieasyy@gmail.com"
+                    action="https://api.web3forms.com/submit"
                     method="POST"
                     enctype="multipart/form-data"
                 >
 
-                    <!-- Settings for FormSubmit -->
-                    <input type="hidden" name="_subject" value="New UniEasy Application">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_url" value="https://siyabonga495.github.io/UNIBO/">
-                    <input type="hidden" name="_next" id="formNextUrl" value="https://siyabonga495.github.io/UNIBO/">
-                    <input type="hidden" name="_replyto" id="formReplyTo" value="">
+                    <!-- Settings for Web3Forms -->
+                    <!-- Get your free access key at https://web3forms.com
+                         by entering unieasyy@gmail.com — it arrives by
+                         email instantly, no account needed. -->
+                    <input type="hidden" name="access_key" value="ee3de6b4-b27d-4325-9c5b-12f3e62b6e05">
+                    <input type="hidden" name="subject" value="New UniEasy Application">
+                    <input type="hidden" name="from_name" value="UniEasy Website">
+                    <input type="hidden" name="replyto" id="formReplyTo" value="">
 
-                    <!-- Filled in with JS right before submitting,
-                         so FormSubmit forwards these too -->
+                    <!-- Filled in with JS right before submitting -->
                     <input type="hidden" name="applicationReference" id="applicationReferenceField" value="">
                     <input type="hidden" name="totalToPay" id="totalToPayField" value="">
 
@@ -1864,9 +1847,8 @@
         <!-- =====================================================
              This <script> makes the whole thing work:
              opening / closing Apply For Me, the payment box,
-             checking the form, sending it by email, and showing
-             the success message when the user comes back from
-             FormSubmit after a successful send.
+             checking the form, sending it to Web3Forms, and
+             showing the success message.
         ====================================================== -->
         <script>
         ( function () {
@@ -1874,8 +1856,6 @@
             const FEE_PER_UNIVERSITY = 5;
             const MAX_FILE_SIZE = 5 * 1024 * 1024;
             const MAX_TOTAL_FILE_SIZE = 10 * 1024 * 1024;
-            const STORAGE_KEY = "uniEasyApplicationResult";
-            const RETURN_PARAM = "applicationSent";
 
             const pageBody = document.body;
             const applySection = document.getElementById( "applyForMeSection" );
@@ -1891,7 +1871,6 @@
             const submitButton = applyForm.querySelector( ".submit-application-button" );
             const bankDetailsBox = document.getElementById( "bankDetailsBox" );
             const cardDetailsBox = document.getElementById( "cardDetailsBox" );
-            const nextUrlField = document.getElementById( "formNextUrl" );
             const applicationReferenceField = document.getElementById( "applicationReferenceField" );
             const totalToPayField = document.getElementById( "totalToPayField" );
             const replyToField = document.getElementById( "formReplyTo" );
@@ -1954,7 +1933,7 @@
                 }
 
                 if ( clicked.closest( "#copyAccountButton" ) ) {
-                    copyText( "#copyAccountButton", "2112041920" );
+                    copyText( "#copyAccountButton", "4118027964" );
                     return;
                 }
 
@@ -2183,62 +2162,42 @@
             }
 
 
-            // SEND FORM BY EMAIL
-            // This is a real, full page submit (not fetch/AJAX),
-            // because FormSubmit only attaches uploaded files when
-            // the form is submitted this way. Since the page will
-            // navigate away and back, we save the reference number
-            // and totals in sessionStorage first, and tell FormSubmit
-            // (via _next) to send the browser back to this same page
-            // with a marker in the URL, so we can show the success
-            // message again once we land back here.
+            // SEND FORM TO WEB3FORMS
+            // Web3Forms supports fetch()/AJAX submissions that
+            // include file attachments, so we submit with fetch,
+            // wait for the JSON response, and show our own success
+            // screen immediately — no page reload needed.
             document.addEventListener( "submit", function ( event ) {
                 if ( event.target !== applyForm ) {
                     return;
                 }
 
+                event.preventDefault();
+                event.stopPropagation();
+
                 if ( !checkForm() ) {
-                    event.preventDefault();
-                    event.stopPropagation();
-
                     showMessage( "Please fix the fields marked in red and try again.", "error" );
-                    firstError.scrollIntoView( { behavior: "smooth", block: "center" } );
 
-                    if ( firstError.focus ) {
-                        firstError.focus( { preventScroll: true } );
+                    if ( firstError ) {
+                        firstError.scrollIntoView( { behavior: "smooth", block: "center" } );
+
+                        if ( firstError.focus ) {
+                            firstError.focus( { preventScroll: true } );
+                        }
                     }
 
                     return;
                 }
 
                 showMessage( "", "" );
-                prepareAndSubmit();
+                sendApplication();
 
             }, true );
 
-            function prepareAndSubmit() {
+            function sendApplication() {
                 const reference = "UEA-" + Date.now().toString( 36 ).toUpperCase();
                 const universities = countUniversities();
                 const total = universities * FEE_PER_UNIVERSITY;
-
-                // Save the details so we can show them again
-                // once FormSubmit sends the browser back here.
-                try {
-                    sessionStorage.setItem( STORAGE_KEY, JSON.stringify( {
-                        reference: reference,
-                        universities: universities,
-                        total: total
-                    } ) );
-                } catch ( error ) {
-                    // sessionStorage may be unavailable (e.g. private
-                    // browsing) — the form will still send, we just
-                    // won't be able to show the reference afterwards.
-                }
-
-                // Tell FormSubmit to send the browser back to this
-                // same page with a marker so we know to show success.
-                const baseUrl = "https://siyabonga495.github.io/UNIBO/";
-                nextUrlField.value = baseUrl + "?" + RETURN_PARAM + "=1";
 
                 const applicantEmail = applyForm.querySelector( 'input[name="email"]' );
                 if ( applicantEmail && replyToField ) {
@@ -2251,14 +2210,31 @@
                 submitButton.disabled = true;
                 submitButton.textContent = "SENDING...";
 
-                // No preventDefault here — let the browser submit
-                // the form normally so files are attached correctly.
+                const data = new FormData( applyForm );
+
+                fetch( applyForm.action, {
+                    method: "POST",
+                    body: data,
+                    headers: { "Accept": "application/json" }
+                } )
+                    .then( function ( response ) {
+                        return response.json();
+                    } )
+                    .then( function ( result ) {
+                        if ( result.success === false ) {
+                            throw new Error( result.message || "Server error" );
+                        }
+                        finishSubmit( reference, universities, total );
+                    } )
+                    .catch( function () {
+                        showMessage( "Something went wrong sending your application. Please check your internet connection and try again.", "error" );
+                        submitButton.disabled = false;
+                        submitButton.textContent = "SUBMIT APPLICATION";
+                    } );
             }
 
             function finishSubmit( reference, universities, total ) {
                 applicationSent = true;
-
-                openApplyForMe();
 
                 document.getElementById( "successReference" ).textContent = reference;
                 document.getElementById( "successUniversities" ).textContent = universities;
@@ -2301,51 +2277,10 @@
                 updatePayment();
             }
 
-            // Runs once on page load. If we've just been sent back
-            // here by FormSubmit after a successful send, show the
-            // success message using the details we saved earlier.
-            function checkForReturnFromSubmit() {
-                const params = new URLSearchParams( window.location.search );
-
-                if ( params.get( RETURN_PARAM ) !== "1" ) {
-                    return;
-                }
-
-                let saved = null;
-                try {
-                    const raw = sessionStorage.getItem( STORAGE_KEY );
-                    if ( raw ) {
-                        saved = JSON.parse( raw );
-                        sessionStorage.removeItem( STORAGE_KEY );
-                    }
-                } catch ( error ) {
-                    saved = null;
-                }
-
-                if ( saved ) {
-                    finishSubmit( saved.reference, saved.universities, saved.total );
-                } else {
-                    // We know it was sent, we just lost the details
-                    // (e.g. sessionStorage was unavailable) — still
-                    // show a generic success message.
-                    finishSubmit( "—", 0, 0 );
-                }
-
-                // Clean the marker out of the URL so refreshing the
-                // page doesn't show the success message again.
-                params.delete( RETURN_PARAM );
-                const cleanedSearch = params.toString();
-                const cleanedUrl = window.location.pathname
-                    + ( cleanedSearch ? "?" + cleanedSearch : "" )
-                    + window.location.hash;
-                window.history.replaceState( {}, document.title, cleanedUrl );
-            }
-
 
             // START
             showPaymentMethodDetails();
             updatePayment();
-            checkForReturnFromSubmit();
 
         } )();
         </script>
@@ -2517,7 +2452,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.cput.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2526,7 +2461,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.cput.ac.za/study-at-cput/undergraduate/apply/step-3"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2565,7 +2500,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.cut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2574,7 +2509,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.cut.ac.za/admission-online"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2613,7 +2548,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.dut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2622,7 +2557,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://onlineapps.dut.ac.za/psc/psoapprd/EMPLOYEE/SA/c/VC_OA_STD_MENU.VC_OA_APPL_STRT_FL.GBL?OPRID=ONLAPP"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2661,7 +2596,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.mut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2670,7 +2605,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.cao.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2709,7 +2644,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.mandela.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2718,7 +2653,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://applications.mandela.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2757,7 +2692,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.nwu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2766,7 +2701,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://applynow.nwu.ac.za/OnlineApplication/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2805,7 +2740,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.ru.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2814,7 +2749,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://ross.ru.ac.za/ugadmissions"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2853,7 +2788,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.smu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2862,7 +2797,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.smu.ac.za/students/apply/online-application/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2901,7 +2836,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.spu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2910,7 +2845,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.spu.ac.za/index.php/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2949,7 +2884,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.sun.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2958,7 +2893,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://student.sun.ac.za/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -2997,7 +2932,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.tut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3006,7 +2941,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://ienabler.tut.ac.za/pls/prodi41/w99pkg.mi_login"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3045,7 +2980,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.uct.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3054,7 +2989,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://applyonline.uct.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3093,7 +3028,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.ufh.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3102,7 +3037,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.ufh.ac.za/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3141,7 +3076,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.uj.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3150,7 +3085,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.uj.ac.za/admissions-aid/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3189,7 +3124,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.ukzn.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3198,7 +3133,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://caocheck.ukzn.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3237,7 +3172,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.ul.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3246,7 +3181,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.ul.ac.za/index.php/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3285,7 +3220,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.ump.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3294,7 +3229,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.ump.ac.za/apply-now"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3333,7 +3268,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.up.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3342,7 +3277,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.up.ac.za/online-application"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3381,7 +3316,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.unisa.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3390,7 +3325,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.unisa.ac.za/sites/corporate/default/Apply-for-admission"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3429,7 +3364,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.ufs.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3438,7 +3373,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://apply.ufs.ac.za/Application/Start"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3477,7 +3412,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.uwc.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3486,7 +3421,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://student.uwc.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3525,7 +3460,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.wits.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3534,7 +3469,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://self-service.wits.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3573,7 +3508,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.vut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3582,7 +3517,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://ienabler.vut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3621,7 +3556,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.unizulu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3630,7 +3565,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.unizulu.ac.za/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3669,7 +3604,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.wsu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3678,7 +3613,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://applications.wsu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3717,7 +3652,7 @@
 
                             <div class="university-buttons">
 
-                                <a
+                                
                                     href="https://www.univen.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -3726,7 +3661,7 @@
                                     Official Website
                                 </a>
 
-                                <a
+                                
                                     href="https://www.univen.ac.za/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
@@ -4052,11 +3987,10 @@
                         </summary>
 
                         <p>
-                            The current UniEasy website is a front-end
-                            prototype. A secure backend and application
-                            management system still need to be connected
-                            before real applications can be submitted
-                            through UniEasy.
+                            Yes. When you submit your application through
+                            Apply For Me, your information and documents
+                            are sent straight to the UniEasy team so we
+                            can begin processing it.
                         </p>
 
                     </details>
