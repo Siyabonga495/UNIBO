@@ -343,9 +343,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    
-
-
     /* =========================
        FILE SIZE VALIDATION
     ========================== */
