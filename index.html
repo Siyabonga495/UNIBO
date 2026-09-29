@@ -285,8 +285,9 @@
                     <!-- Settings for FormSubmit -->
                     <input type="hidden" name="_subject" value="New UniEasy Application">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="false">
-                    <input type="hidden" name="_next" id="formNextUrl" value="">
+                    <input type="hidden" name="_url" value="https://siyabonga495.github.io/UNIBO/">
+                    <input type="hidden" name="_next" id="formNextUrl" value="https://siyabonga495.github.io/UNIBO/">
+                    <input type="hidden" name="_replyto" id="formReplyTo" value="">
 
                     <!-- Filled in with JS right before submitting,
                          so FormSubmit forwards these too -->
@@ -1872,6 +1873,7 @@
 
             const FEE_PER_UNIVERSITY = 5;
             const MAX_FILE_SIZE = 5 * 1024 * 1024;
+            const MAX_TOTAL_FILE_SIZE = 10 * 1024 * 1024;
             const STORAGE_KEY = "uniEasyApplicationResult";
             const RETURN_PARAM = "applicationSent";
 
@@ -1892,6 +1894,7 @@
             const nextUrlField = document.getElementById( "formNextUrl" );
             const applicationReferenceField = document.getElementById( "applicationReferenceField" );
             const totalToPayField = document.getElementById( "totalToPayField" );
+            const replyToField = document.getElementById( "formReplyTo" );
 
             const partsToHide = [
                 applyForm,
@@ -2158,6 +2161,19 @@
                     showError( paymentAmountInput, "The amount paid must be at least R" + total.toFixed( 2 ) + "." );
                 }
 
+                let totalFileSize = 0;
+                applyForm.querySelectorAll( 'input[type="file"]' ).forEach( function ( input ) {
+                    for ( let i = 0; i < input.files.length; i++ ) {
+                        totalFileSize += input.files[i].size;
+                    }
+                } );
+
+                if ( totalFileSize > MAX_TOTAL_FILE_SIZE ) {
+                    const totalMb = ( totalFileSize / ( 1024 * 1024 ) ).toFixed( 2 );
+                    showMessage( "Your documents are " + totalMb + " MB in total. Please keep all uploaded documents at 10 MB or less.", "error" );
+                    return false;
+                }
+
                 return firstError === null;
             }
 
@@ -2221,8 +2237,13 @@
 
                 // Tell FormSubmit to send the browser back to this
                 // same page with a marker so we know to show success.
-                const baseUrl = window.location.origin + window.location.pathname;
+                const baseUrl = "https://siyabonga495.github.io/UNIBO/";
                 nextUrlField.value = baseUrl + "?" + RETURN_PARAM + "=1";
+
+                const applicantEmail = applyForm.querySelector( 'input[name="email"]' );
+                if ( applicantEmail && replyToField ) {
+                    replyToField.value = applicantEmail.value.trim();
+                }
 
                 applicationReferenceField.value = reference;
                 totalToPayField.value = "R" + total.toFixed( 2 );
