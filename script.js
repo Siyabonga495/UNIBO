@@ -342,6 +342,204 @@ document.addEventListener("DOMContentLoaded", function () {
 
     });
 
+   /* =========================
+       APPLICATION FORM
+    ========================== */
+
+    const applicationForm =
+        document.getElementById("applyForMeForm");
+
+    const applicationMessage =
+        document.getElementById(
+            "applicationFormMessage"
+        );
+
+
+    if (applicationForm) {
+
+        applicationForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                if (!applicationForm.checkValidity()) {
+
+                    applicationForm.reportValidity();
+
+                    return;
+
+                }
+
+
+                if (applicationMessage) {
+
+                    applicationMessage.className =
+                        "form-message success";
+
+                    applicationMessage.innerHTML =
+                        "✅ Your information has been completed successfully. " +
+                        "The current UniEasy website is a demonstration, " +
+                        "so no real application has been submitted yet.";
+
+                }
+
+
+                applicationMessage.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+            }
+        );
+
+    }
+
+
+    /* =========================
+       FILE SIZE VALIDATION
+    ========================== */
+
+    const fileInputs =
+        document.querySelectorAll(
+            'input[type="file"]'
+        );
+
+
+    fileInputs.forEach(function (input) {
+
+        input.addEventListener("change", function () {
+
+            const files = Array.from(input.files);
+
+            const maxSize =
+                5 * 1024 * 1024;
+
+
+            for (const file of files) {
+
+                if (file.size > maxSize) {
+
+                    alert(
+                        `"${file.name}" is larger than 5 MB. ` +
+                        "Please choose a smaller file."
+                    );
+
+                    input.value = "";
+
+                    return;
+
+                }
+
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       ID NUMBER CLEANING
+    ========================== */
+
+    const idNumber =
+        document.getElementById("idNumber");
+
+
+    if (idNumber) {
+
+        idNumber.addEventListener(
+            "input",
+            function () {
+
+                this.value =
+                    this.value.replace(
+                        /[^0-9A-Za-z]/g,
+                        ""
+                    );
+
+            }
+        );
+
+    }
+
+
+    /* =========================
+       CONTACT FORM
+    ========================== */
+
+    const contactForm =
+        document.getElementById("contactForm");
+
+    const contactName =
+        document.getElementById("contactName");
+
+    const contactEmail =
+        document.getElementById("contactEmail");
+
+    const contactMessage =
+        document.getElementById("contactMessage");
+
+
+    if (contactForm) {
+
+        contactForm.addEventListener(
+            "submit",
+            function (event) {
+
+                event.preventDefault();
+
+
+                const name =
+                    contactName.value.trim();
+
+                const email =
+                    contactEmail.value.trim();
+
+                const message =
+                    contactMessage.value.trim();
+
+
+                if (!name || !email || !message) {
+
+                    alert(
+                        "Please complete all contact fields."
+                    );
+
+                    return;
+
+                }
+
+
+                const subject =
+                    encodeURIComponent(
+                        "UniEasy Website Enquiry"
+                    );
+
+                const body =
+                    encodeURIComponent(
+                        "Name: " +
+                        name +
+                        "\n\nEmail: " +
+                        email +
+                        "\n\nMessage:\n" +
+                        message
+                    );
+
+
+                window.location.href =
+                    "mailto:unieasyy@gmail.com" +
+                    "?subject=" +
+                    subject +
+                    "&body=" +
+                    body;
+
+            }
+        );
+
+    }
+
 
     /* =========================
        FILE SIZE VALIDATION
