@@ -344,15 +344,53 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================
-       APPLICATION FORM
-       (validation, submission and the success message for
-       #applyForMeForm are now fully handled by the script
-       inside the Apply For Me section itself, which sends
-       the form to FormSubmit with file attachments. This
-       file used to intercept the submit here and show a
-       "demonstration" message instead — that block has been
-       removed so real submissions actually go through.)
-    ========================== */
+   APPLICATION FORM
+========================== */
+
+const applicationForm =
+    document.getElementById("applyForMeForm");
+
+const applicationMessage =
+    document.getElementById(
+        "applicationFormMessage"
+    );
+
+
+if (applicationForm) {
+
+    applicationForm.addEventListener(
+        "submit",
+        function (event) {
+
+            /*
+             * Do NOT use event.preventDefault().
+             *
+             * FormSubmit needs the browser to
+             * actually submit the form.
+             */
+
+            if (!applicationForm.checkValidity()) {
+
+                event.preventDefault();
+
+                applicationForm.reportValidity();
+
+                return;
+
+            }
+
+            /*
+             * If the form is valid, nothing else
+             * is needed here.
+             *
+             * The browser will submit the form
+             * to the FormSubmit action in HTML.
+             */
+
+        }
+    );
+
+}
 
 
     /* =========================
@@ -424,79 +462,27 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
     /* =========================
-       CONTACT FORM
-    ========================== */
+   CONTACT FORM
+========================== */
 
-    const contactForm =
-        document.getElementById("contactForm");
+const contactForm =
+    document.getElementById("contactForm");
 
-    const contactName =
-        document.getElementById("contactName");
+if (contactForm) {
 
-    const contactEmail =
-        document.getElementById("contactEmail");
+    contactForm.addEventListener(
+        "submit",
+        function () {
 
-    const contactMessage =
-        document.getElementById("contactMessage");
+            /*
+             * The contact form will submit using
+             * the action and method defined in HTML.
+             */
 
+        }
+    );
 
-    if (contactForm) {
-
-        contactForm.addEventListener(
-            "submit",
-            function (event) {
-
-                event.preventDefault();
-
-
-                const name =
-                    contactName.value.trim();
-
-                const email =
-                    contactEmail.value.trim();
-
-                const message =
-                    contactMessage.value.trim();
-
-
-                if (!name || !email || !message) {
-
-                    alert(
-                        "Please complete all contact fields."
-                    );
-
-                    return;
-
-                }
-
-
-                const subject =
-                    encodeURIComponent(
-                        "UniEasy Website Enquiry"
-                    );
-
-                const body =
-                    encodeURIComponent(
-                        "Name: " +
-                        name +
-                        "\n\nEmail: " +
-                        email +
-                        "\n\nMessage:\n" +
-                        message
-                    );
-
-
-                window.location.href =
-                    "mailto:unieasyy@gmail.com" +
-                    "?subject=" +
-                    subject +
-                    "&body=" +
-                    body;
-
-            }
-        );
-
-    }
+}
 
 
     /* =========================
