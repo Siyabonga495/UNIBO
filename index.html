@@ -2195,44 +2195,138 @@
             }, true );
 
             function sendApplication() {
-                const reference = "UEA-" + Date.now().toString( 36 ).toUpperCase();
-                const universities = countUniversities();
-                const total = universities * FEE_PER_UNIVERSITY;
 
-                const applicantEmail = applyForm.querySelector( 'input[name="email"]' );
-                if ( applicantEmail && replyToField ) {
-                    replyToField.value = applicantEmail.value.trim();
-                }
+    const reference =
+        "UEA-" +
+        Date.now().toString(36).toUpperCase();
 
-                applicationReferenceField.value = reference;
-                totalToPayField.value = "R" + total.toFixed( 2 );
+    const universities =
+        countUniversities();
 
-                submitButton.disabled = true;
-                submitButton.textContent = "SENDING...";
+    const total =
+        universities * FEE_PER_UNIVERSITY;
 
-                const data = new FormData( applyForm );
 
-                fetch( applyForm.action, {
-                    method: "POST",
-                    body: data,
-                    headers: { "Accept": "application/json" }
-                } )
-                    .then( function ( response ) {
-                        return response.json();
-                    } )
-                    .then( function ( result ) {
-                        if ( result.success === false ) {
-                            throw new Error( result.message || "Server error" );
-                        }
-                        finishSubmit( reference, universities, total );
-                    } )
-                    .catch( function () {
-                        showMessage( "Something went wrong sending your application. Please check your internet connection and try again.", "error" );
-                        submitButton.disabled = false;
-                        submitButton.textContent = "SUBMIT APPLICATION";
-                    } );
-            }
+    const applicantEmail =
+        applyForm.querySelector('input[name="email"]');
 
+
+    if (applicantEmail && replyToField) {
+
+        replyToField.value =
+            applicantEmail.value.trim();
+
+    }
+
+
+    applicationReferenceField.value =
+        reference;
+
+    totalToPayField.value =
+        "R" + total.toFixed(2);
+
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+        "SENDING...";
+
+
+    const data =
+        new FormData(applyForm);
+
+
+    fetch(applyForm.action, {
+
+        method: "POST",
+
+        body: data,
+
+        headers: {
+            "Accept": "application/json"
+        }
+
+    })
+
+    .then(function(response) {
+
+        return response.text();
+
+    })
+
+    .then(function(responseText) {
+
+        console.log(
+            "Web3Forms response:",
+            responseText
+        );
+
+
+        let result;
+
+
+        try {
+
+            result =
+                JSON.parse(responseText);
+
+        } catch (error) {
+
+            throw new Error(
+                "The server returned an unexpected response: " +
+                responseText.substring(0, 300)
+            );
+
+        }
+
+
+        if (
+            result.success === false
+        ) {
+
+            throw new Error(
+                result.message ||
+                "Web3Forms rejected the application."
+            );
+
+        }
+
+
+        finishSubmit(
+            reference,
+            universities,
+            total
+        );
+
+    })
+
+    .catch(function(error) {
+
+        console.error(
+            "UniEasy submission error:",
+            error
+        );
+
+
+        showMessage(
+
+            "Application could not be sent. " +
+            "Server message: " +
+            error.message,
+
+            "error"
+
+        );
+
+
+        submitButton.disabled = false;
+
+        submitButton.textContent =
+            "SUBMIT APPLICATION";
+
+    });
+
+}
             function finishSubmit( reference, universities, total ) {
                 applicationSent = true;
 
