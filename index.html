@@ -30,6 +30,118 @@
     <title>UniEasy | Make University Applications Easy</title>
 
     <link rel="stylesheet" href="style.css">
+
+    <!-- UniEasy Icons -->
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+    >
+
+    <style>
+        /* =========================================================
+           UNIEASY - APPLY FOR ME DEDICATED VIEW
+        ========================================================= */
+
+        body.apply-for-me-mode .site-header,
+        body.apply-for-me-mode #home,
+        body.apply-for-me-mode #universities,
+        body.apply-for-me-mode #how-it-works,
+        body.apply-for-me-mode #about,
+        body.apply-for-me-mode #faq,
+        body.apply-for-me-mode #contact,
+        body.apply-for-me-mode .site-footer,
+        body.apply-for-me-mode #cookieBanner,
+        body.apply-for-me-mode #backToTop {
+            display: none !important;
+        }
+
+        body.apply-for-me-mode #mainContent {
+            display: block !important;
+        }
+
+        body.apply-for-me-mode #applyForMeSection {
+            display: block !important;
+            min-height: 100vh;
+        }
+
+        .back-to-site-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            padding: 12px 18px;
+            border: 0;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: 700;
+            background: #2563eb;
+            color: #fff;
+        }
+
+        .back-to-site-button:hover {
+            opacity: 0.9;
+        }
+
+        .payment-summary-box {
+            margin-top: 24px;
+            padding: 22px;
+            border-radius: 14px;
+            border: 1px solid rgba(37, 99, 235, 0.25);
+            background: rgba(37, 99, 235, 0.06);
+        }
+
+        .payment-summary-box h3 {
+            margin-top: 0;
+        }
+
+        .payment-summary-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 8px 0;
+        }
+
+        .payment-summary-total {
+            margin-top: 10px;
+            padding-top: 14px;
+            border-top: 2px solid rgba(37, 99, 235, 0.25);
+            font-size: 1.15rem;
+            font-weight: 800;
+        }
+
+        .bank-details-box {
+            margin-top: 18px;
+            padding: 18px;
+            border-radius: 12px;
+            background: rgba(0, 0, 0, 0.04);
+        }
+
+        .bank-details-box p {
+            margin: 6px 0;
+        }
+
+        .payment-method-note {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .ui-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 1.1em;
+            margin-right: 6px;
+        }
+
+        @media (max-width: 600px) {
+            .payment-summary-row {
+                flex-direction: column;
+                gap: 2px;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -58,7 +170,7 @@
                 aria-label="Open navigation menu"
                 aria-expanded="false"
             >
-                ☰
+                <i class="fa-solid fa-bars" aria-hidden="true"></i>
             </button>
 
             <nav
@@ -79,7 +191,7 @@
                     class="dark-mode-button"
                     aria-label="Toggle dark mode"
                 >
-                    Dark mode
+                    <i class="fa-solid fa-moon" aria-hidden="true"></i>
                 </button>
             </nav>
 
@@ -100,7 +212,7 @@
                 <div class="hero-content">
 
                     <div class="hero-badge">
-                        🎓 Your University Journey Starts Here
+                        <i class="fa-solid fa-graduation-cap ui-icon" aria-hidden="true"></i> Your University Journey Starts Here
                     </div>
 
                     <h1>
@@ -127,7 +239,7 @@
                         <div class="apply-choice">
 
                             <div class="apply-choice-icon">
-                                🎓
+                                <i class="fa-solid fa-graduation-cap ui-icon" aria-hidden="true"></i>
                             </div>
 
                             <h2>
@@ -140,8 +252,8 @@
                                 official application system.
                             </p>
 
-                            
-                            <a    href="#universities"
+                            <a
+                                href="#universities"
                                 class="apply-btn apply-btn-primary"
                             >
                                 APPLY BY MYSELF
@@ -153,7 +265,7 @@
                         <div class="apply-choice">
 
                             <div class="apply-choice-icon">
-                                A
+                                <i class="fa-solid fa-handshake ui-icon" aria-hidden="true"></i>
                             </div>
 
                             <h2>
@@ -185,6 +297,10 @@
         </section>
 
 
+        <!-- =====================================================
+             APPLY FOR ME
+             THIS ENTIRE SECTION IS HIDDEN INITIALLY
+        ====================================================== -->
         <section
             id="applyForMeSection"
             class="apply-for-me-section"
@@ -193,24 +309,20 @@
 
             <div class="container">
 
-                <!-- Back button at the top -->
-                <div style="margin-bottom: 24px;">
-
-                    <button
-                        type="button"
-                        id="backToOptionsTop"
-                        class="close-application-button"
-                    >
-                        ← Back to Application Options
-                    </button>
-
-                </div>
-
+                <button
+                    type="button"
+                    id="backToSiteButton"
+                    class="back-to-site-button"
+                    aria-label="Go back to the UniEasy website"
+                >
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    Back
+                </button>
 
                 <div class="application-header">
 
                     <span class="section-label">
-                        UNI EASY APPLICATION SERVICE
+                        UNIEASY APPLICATION SERVICE
                     </span>
 
                     <h2>
@@ -230,7 +342,7 @@
                 <div class="application-notice">
 
                     <strong>
-                         Before you continue
+                        <i class="fa-solid fa-circle-info ui-icon" aria-hidden="true"></i> Before you continue
                     </strong>
 
                     <p>
@@ -244,11 +356,6 @@
 
                 <!-- =========================
                      APPLICATION FORM
-                     Sends to Web3Forms, which forwards it
-                     (WITH file attachments) to unieasyy@gmail.com.
-                     Web3Forms supports normal fetch()/AJAX submissions
-                     with files, so we do not need a full page
-                     reload like some other form services require.
                 ========================== -->
                 <form
                     id="applyForMeForm"
@@ -257,19 +364,17 @@
                     method="POST"
                     enctype="multipart/form-data"
                 >
+                   <input type="hidden" name="_subject" value="New UniEasy Apply For Me Application">
 
-                    <!-- Settings for Web3Forms -->
-                    <!-- Get your free access key at https://web3forms.com
-                         by entering unieasyy@gmail.com — it arrives by
-                         email instantly, no account needed. -->
-                    <input type="hidden" name="_subject" value="New UniEasy Application">
-                    <input type="hidden" name="_replyto" id="formReplyTo" value="">
-                    <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_captcha" value="true">
-                    <!-- Filled in with JS right before submitting -->
-                    <input type="hidden" name="applicationReference" id="applicationReferenceField" value="">
-                    <input type="hidden" name="totalToPay" id="totalToPayField" value="">
+                   <input type="hidden" name="_captcha" value="false">
 
+                   <input type="hidden" name="_template" value="table">
+
+                   <input
+                      type="hidden"
+                      name="_next"
+                      value="https://siyabonga495.github.io/UNIBO/"
+                    >
 
                     <!-- PERSONAL INFORMATION -->
                     <fieldset class="form-section">
@@ -555,11 +660,90 @@
                     </fieldset>
 
 
-                    <!-- CITIZENSHIP -->
+                    <!-- NEXT OF KIN -->
                     <fieldset class="form-section">
 
                         <legend class="form-section-title">
                             <span class="section-number">3</span>
+                            Next of Kin
+                        </legend>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="nextOfKinName">
+                                    Full Name
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="nextOfKinName"
+                                    name="nextOfKinName"
+                                    placeholder="Enter next of kin full name"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nextOfKinRelationship">
+                                    Relationship
+                                    <span class="required">*</span>
+                                </label>
+
+                                <select
+                                    id="nextOfKinRelationship"
+                                    name="nextOfKinRelationship"
+                                    required
+                                >
+                                    <option value="">Select relationship</option>
+                                    <option value="Parent">Parent</option>
+                                    <option value="Guardian">Guardian</option>
+                                    <option value="Sibling">Sibling</option>
+                                    <option value="Spouse">Spouse</option>
+                                    <option value="Relative">Relative</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nextOfKinPhone">
+                                    Cellphone Number
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="tel"
+                                    id="nextOfKinPhone"
+                                    name="nextOfKinPhone"
+                                    placeholder="e.g. 067 123 4567"
+                                    required
+                                >
+                            </div>
+
+                            <div class="form-group">
+                                <label for="nextOfKinEmail">
+                                    Email Address
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="nextOfKinEmail"
+                                    name="nextOfKinEmail"
+                                    placeholder="Optional"
+                                >
+                            </div>
+
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- CITIZENSHIP -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">4</span>
                             Citizenship & Background
                         </legend>
 
@@ -623,7 +807,7 @@
                     <fieldset class="form-section">
 
                         <legend class="form-section-title">
-                            <span class="section-number">4</span>
+                            <span class="section-number">5</span>
                             School & Academic Information
                         </legend>
 
@@ -767,7 +951,7 @@
                     <fieldset class="form-section">
 
                         <legend class="form-section-title">
-                            <span class="section-number">5</span>
+                            <span class="section-number">6</span>
                             University Choices
                         </legend>
 
@@ -1072,7 +1256,7 @@
                                     id="additionalUniversities"
                                     name="additionalUniversities"
                                     rows="3"
-                                    placeholder="If you want to apply to more universities, list them here (one university per line)..."
+                                    placeholder="If you want to apply to more universities, list them here..."
                                 ></textarea>
 
                             </div>
@@ -1086,7 +1270,7 @@
                     <fieldset class="form-section">
 
                         <legend class="form-section-title">
-                            <span class="section-number">6</span>
+                            <span class="section-number">7</span>
                             Funding Information
                         </legend>
 
@@ -1136,7 +1320,7 @@
                     <fieldset class="form-section">
 
                         <legend class="form-section-title">
-                            <span class="section-number">7</span>
+                            <span class="section-number">8</span>
                             Required Documents
                         </legend>
 
@@ -1257,11 +1441,105 @@
                     </fieldset>
 
 
-                    <!-- ADDITIONAL INFORMATION -->
+                    <!-- PAYMENT -->
                     <fieldset class="form-section">
 
                         <legend class="form-section-title">
                             <span class="section-number">8</span>
+                            Payment & Proof of Payment
+                        </legend>
+
+                        <p class="form-help-text">
+                            The UniEasy Apply For Me service costs R5 per university.
+                            Select your payment method and upload your proof of payment.
+                        </p>
+
+                        <div class="form-grid">
+
+                            <div class="form-group">
+                                <label for="paymentMethod">
+                                    Payment Method
+                                    <span class="required">*</span>
+                                </label>
+
+                                <select
+                                    id="paymentMethod"
+                                    name="paymentMethod"
+                                    required
+                                >
+                                    <option value="">Select payment method</option>
+                                    <option value="EFT">EFT</option>
+                                    <option value="Cash Deposit">Cash Deposit</option>
+                                    <option value="Card Payment">Card Payment</option>
+                                </select>
+
+                                <small class="payment-method-note">
+                                    Choose how you paid the UniEasy service fee.
+                                </small>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="proofOfPayment">
+                                    Proof of Payment
+                                    <span class="required">*</span>
+                                </label>
+
+                                <input
+                                    type="file"
+                                    id="proofOfPayment"
+                                    name="proofOfPayment"
+                                    accept=".pdf,.jpg,.jpeg,.png"
+                                    required
+                                >
+
+                                <small>
+                                    Upload your receipt or proof of payment — PDF, JPG or PNG, maximum 5 MB.
+                                </small>
+                            </div>
+
+                        </div>
+
+                        <div class="bank-details-box">
+                            <h3>
+                                <i class="fa-solid fa-building-columns ui-icon" aria-hidden="true"></i>
+                                UniEasy Payment Details
+                            </h3>
+
+                            <p><strong>Beneficiary:</strong> UniEasy</p>
+                            <p><strong>Account Name:</strong> ABSA</p>
+                            <p><strong>Account Number:</strong> 4118 0279 64</p>
+                        </div>
+
+                        <div class="payment-summary-box" id="paymentSummaryBox">
+                            <h3>
+                                <i class="fa-solid fa-receipt ui-icon" aria-hidden="true"></i>
+                                Payment Summary
+                            </h3>
+
+                            <div class="payment-summary-row">
+                                <span>Number of universities:</span>
+                                <strong id="selectedUniversityCount">1</strong>
+                            </div>
+
+                            <div class="payment-summary-row">
+                                <span>Fee per university:</span>
+                                <strong>R5</strong>
+                            </div>
+
+                            <div class="payment-summary-row payment-summary-total">
+                                <span>Total to pay:</span>
+                                <strong id="selectedUniversityTotal">R5</strong>
+                            </div>
+                        </div>
+
+                    </fieldset>
+
+
+                    <!-- ADDITIONAL INFORMATION -->
+                    <fieldset class="form-section">
+
+                        <legend class="form-section-title">
+                            <span class="section-number">9</span>
                             Additional Information
                         </legend>
 
@@ -1277,290 +1555,6 @@
                                 rows="5"
                                 placeholder="Tell us anything that may help us with your application..."
                             ></textarea>
-
-                        </div>
-
-                    </fieldset>
-
-
-                    <!-- =====================================================
-                         PAYMENT & PROOF OF PAYMENT
-                         All styling is inline, so this works even
-                         if style.css does not know these classes.
-                    ====================================================== -->
-                    <fieldset class="form-section">
-
-                        <legend class="form-section-title">
-                            <span class="section-number">9</span>
-                            Payment & Proof of Payment
-                        </legend>
-
-                        <p class="form-help-text">
-                            Choose how you want to pay. Selecting an
-                            option will show you the details you need
-                            to make the payment.
-                        </p>
-
-
-                        <!-- Fee summary -->
-                        <div style="padding: 18px 22px; margin: 16px 0 24px; border: 1px solid rgba(127,127,127,0.25); border-radius: 14px; background: rgba(37,99,235,0.05);">
-
-                            <div style="display: flex; justify-content: space-between; padding: 6px 0;">
-                                <span>Universities selected</span>
-                                <strong id="universityCount">0</strong>
-                            </div>
-
-                            <div style="display: flex; justify-content: space-between; padding: 6px 0;">
-                                <span>Fee per university</span>
-                                <strong>R5.00</strong>
-                            </div>
-
-                            <div style="display: flex; justify-content: space-between; padding: 14px 0 6px; margin-top: 8px; border-top: 1px dashed rgba(127,127,127,0.4); font-size: 1.2rem;">
-                                <span>Total to pay</span>
-                                <strong id="totalToPay" style="color: #2563eb;">R0.00</strong>
-                            </div>
-
-                        </div>
-
-
-                        <!-- Choose a payment method -->
-                        <p class="form-help-text">
-                            Select a Payment Method
-                            <span class="required">*</span>
-                        </p>
-
-                        <div
-                            id="paymentOptions"
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin: 12px 0 20px;"
-                        >
-
-                            <label
-                                class="payment-option-card"
-                                style="position: relative; display: flex; align-items: center; gap: 14px; padding: 18px 16px; border: 2px solid rgba(127,127,127,0.25); border-radius: 14px; background: #ffffff; cursor: pointer;"
-                            >
-
-                                <input
-                                    type="radio"
-                                    name="paymentMethod"
-                                    value="EFT"
-                                    required
-                                    style="position: absolute; opacity: 0;"
-                                >
-
-                                <span style="font-size: 1.8rem;">🏦</span>
-
-                                <span style="display: flex; flex-direction: column;">
-                                    <strong>EFT</strong>
-                                    <small style="opacity: 0.65;">Pay from your banking app</small>
-                                </span>
-
-                            </label>
-
-
-                            <label
-                                class="payment-option-card"
-                                style="position: relative; display: flex; align-items: center; gap: 14px; padding: 18px 16px; border: 2px solid rgba(127,127,127,0.25); border-radius: 14px; background: #ffffff; cursor: pointer;"
-                            >
-
-                                <input
-                                    type="radio"
-                                    name="paymentMethod"
-                                    value="Cash Deposit"
-                                    style="position: absolute; opacity: 0;"
-                                >
-
-                                <span style="font-size: 1.8rem;">💵</span>
-
-                                <span style="display: flex; flex-direction: column;">
-                                    <strong>Cash Deposit</strong>
-                                    <small style="opacity: 0.65;">Deposit at a bank</small>
-                                </span>
-
-                            </label>
-
-
-                            <label
-                                class="payment-option-card"
-                                style="position: relative; display: flex; align-items: center; gap: 14px; padding: 18px 16px; border: 2px solid rgba(127,127,127,0.25); border-radius: 14px; background: #ffffff; cursor: pointer;"
-                            >
-
-                                <input
-                                    type="radio"
-                                    name="paymentMethod"
-                                    value="Card Payment"
-                                    style="position: absolute; opacity: 0;"
-                                >
-
-                                <span style="font-size: 1.8rem;">💳</span>
-
-                                <span style="display: flex; flex-direction: column;">
-                                    <strong>Card Payment</strong>
-                                    <small style="opacity: 0.65;">Pay with debit or credit card</small>
-                                </span>
-
-                            </label>
-
-                        </div>
-
-
-                        <!-- Bank details card: shown for EFT and Cash Deposit -->
-                        <div
-                            id="bankDetailsBox"
-                            hidden
-                            style="padding: 20px 24px; margin-bottom: 20px; border: 1px solid rgba(37,99,235,0.25); border-left: 5px solid #2563eb; border-radius: 12px; background: #ffffff; box-shadow: 0 4px 14px rgba(0,0,0,0.05);"
-                        >
-
-                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                                <span style="font-size: 1.4rem;">🏦</span>
-                                <h4 style="margin: 0;">Payment Details</h4>
-                            </div>
-
-                            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed rgba(127,127,127,0.25);">
-                                <span style="opacity: 0.65;">Beneficiary</span>
-                                <span style="font-weight: 700;">UniEasy</span>
-                            </div>
-                            
-                            <div style="display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px dashed rgba(127,127,127,0.25);">
-                                <span style="opacity: 0.65;">Account Name</span>
-                                <span style="font-weight: 700;">ABSA</span>
-                            </div>
-
-                            <div style="display: flex; justify-content: space-between; align-items: center; padding: 10px 0;">
-                                <span style="opacity: 0.65;">Account Number</span>
-                                <span style="display: flex; align-items: center; gap: 10px; font-weight: 700; letter-spacing: 1px;">
-                                    4118 0279 64
-                                    <button
-                                        type="button"
-                                        id="copyAccountButton"
-                                        style="padding: 4px 10px; border: 1px solid #2563eb; border-radius: 8px; background: transparent; color: #2563eb; font-weight: 700; font-size: 0.75rem; cursor: pointer;"
-                                    >
-                                        Copy
-                                    </button>
-                                </span>
-                            </div>
-
-                        </div>
-
-
-                        <!-- Card note: shown for Card Payment -->
-                        <div
-                            id="cardDetailsBox"
-                            hidden
-                            style="padding: 20px 24px; margin-bottom: 20px; border: 1px solid rgba(37,99,235,0.25); border-left: 5px solid #2563eb; border-radius: 12px; background: #ffffff;"
-                        >
-
-                            <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 14px;">
-                                <span style="font-size: 1.4rem;">💳</span>
-                                <h4 style="margin: 0;">Card Payment</h4>
-                            </div>
-
-                            <p style="margin: 0; opacity: 0.85;">
-                                Card payments are not yet set up on
-                                this website. Please choose EFT or
-                                Cash Deposit for now, or contact
-                                UniEasy to arrange a card payment.
-                            </p>
-
-                        </div>
-
-
-                        <!-- Payment reference -->
-                        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 16px 22px; margin-bottom: 24px; border: 1px dashed #2563eb; border-radius: 12px; background: rgba(37,99,235,0.04);">
-
-                            <div>
-                                <small style="display: block; opacity: 0.65;">Use this as your payment reference</small>
-                                <strong id="paymentReference" style="font-size: 1.2rem; letter-spacing: 1px;"></strong>
-                            </div>
-
-                            <button
-                                type="button"
-                                id="copyReferenceButton"
-                                style="padding: 8px 18px; border: 1px solid #2563eb; border-radius: 8px; background: transparent; color: #2563eb; font-weight: 700; font-size: 0.85rem; cursor: pointer;"
-                            >
-                                Copy
-                            </button>
-
-                        </div>
-
-
-                        <div class="form-grid">
-
-                            <div class="form-group">
-
-                                <label for="paymentDate">
-                                    Date of Payment
-                                    <span class="required">*</span>
-                                </label>
-
-                                <input
-                                    type="date"
-                                    id="paymentDate"
-                                    name="paymentDate"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label for="payerName">
-                                    Name of Payer
-                                    <span class="required">*</span>
-                                </label>
-
-                                <input
-                                    type="text"
-                                    id="payerName"
-                                    name="payerName"
-                                    placeholder="Name on the payment"
-                                    required
-                                >
-
-                            </div>
-
-
-                            <div class="form-group">
-
-                                <label for="paymentAmount">
-                                    Amount Paid (R)
-                                    <span class="required">*</span>
-                                </label>
-
-                                <input
-                                    type="number"
-                                    id="paymentAmount"
-                                    name="paymentAmount"
-                                    min="0"
-                                    step="0.01"
-                                    placeholder="0.00"
-                                    required
-                                >
-
-                            </div>
-
-                        </div>
-
-
-                        <!-- Proof of payment upload -->
-                        <div class="document-upload" style="margin-top: 20px;">
-
-                            <label for="proofOfPayment">
-                                Proof of Payment
-                                <span class="required">*</span>
-                            </label>
-
-                            <input
-                                type="file"
-                                id="proofOfPayment"
-                                name="proofOfPayment"
-                                accept=".pdf,.jpg,.jpeg,.png"
-                                required
-                            >
-
-                            <small>
-                                PDF, JPG or PNG — maximum 5 MB
-                            </small>
 
                         </div>
 
@@ -1613,24 +1607,6 @@
 
                             </label>
 
-
-                            <label>
-                                <input
-                                    type="checkbox"
-                                    id="paymentConfirm"
-                                    name="paymentConfirm"
-                                    required
-                                >
-
-                                <span>
-                                    I confirm that I have paid the
-                                    total shown above and that my proof
-                                    of payment is genuine.
-                                    <span class="required">*</span>
-                                </span>
-
-                            </label>
-
                         </div>
 
                     </fieldset>
@@ -1650,11 +1626,11 @@
                             type="submit"
                             class="submit-application-button"
                         >
-                             SUBMIT APPLICATION
+                            <i class="fa-solid fa-paper-plane ui-icon" aria-hidden="true"></i> SUBMIT APPLICATION
                         </button>
 
                         <p class="secure-note">
-                            Your information should be handled
+                            <i class="fa-solid fa-lock ui-icon" aria-hidden="true"></i> Your information should be handled
                             securely and only used for the purpose
                             explained above.
                         </p>
@@ -1664,64 +1640,6 @@
                 </form>
 
 
-                <!-- Shows after the form is submitted -->
-                <div
-                    id="applicationSuccess"
-                    hidden
-                    style="max-width: 560px; margin: 24px auto; padding: 44px 36px; text-align: center; border: 1px solid rgba(37,99,235,0.18); border-radius: 20px; background: #ffffff; box-shadow: 0 12px 32px rgba(15,23,42,0.10);"
-                >
-
-                    <div style="display: flex; align-items: center; justify-content: center; width: 72px; height: 72px; margin: 0 auto 20px; border-radius: 50%; background: #2563eb; color: #ffffff; font-size: 2.2rem; box-shadow: 0 10px 22px rgba(37,99,235,0.28);">
-                        ✓
-                    </div>
-
-                    <h3 style="font-size: 1.5rem; margin-bottom: 8px;">
-                        Application Submitted Successfully
-                    </h3>
-
-                    <p style="max-width: 400px; margin: 0 auto 22px; opacity: 0.75;">
-                        Thank you for applying with UniEasy. Your
-                        application and proof of payment have been
-                        sent through to our team for processing.
-                    </p>
-
-                    <div style="display: inline-flex; flex-direction: column; align-items: center; gap: 4px; padding: 16px 28px; margin-bottom: 22px; border: 1px dashed #2563eb; border-radius: 14px; background: rgba(37,99,235,0.05);">
-                        <small style="text-transform: uppercase; letter-spacing: 1px; font-size: 0.72rem; opacity: 0.65;">
-                            Application Code
-                        </small>
-                        <strong id="successReference" style="font-size: 1.4rem; letter-spacing: 1.5px; color: #2563eb;"></strong>
-                    </div>
-
-                    <div style="display: flex; justify-content: center; gap: 36px; margin-bottom: 28px; flex-wrap: wrap;">
-
-                        <div>
-                            <small style="display: block; opacity: 0.6; margin-bottom: 3px;">Universities</small>
-                            <strong id="successUniversities"></strong>
-                        </div>
-
-                        <div>
-                            <small style="display: block; opacity: 0.6; margin-bottom: 3px;">Service Fee</small>
-                            <strong id="successTotal"></strong>
-                        </div>
-
-                    </div>
-
-                    <p style="font-size: 0.85rem; opacity: 0.65; margin-bottom: 24px;">
-                        Please keep your application code for any
-                        future correspondence regarding this application.
-                    </p>
-
-                    <button
-                        type="button"
-                        id="backToHome"
-                        class="close-application-button"
-                    >
-                        ← Back to Home
-                    </button>
-
-                </div>
-
-
                 <!-- =================================================
                      R5 MESSAGE
                      APPEARS BELOW THE FORM
@@ -1729,7 +1647,7 @@
                 <div class="application-price-box">
 
                     <div class="price-icon">
-                        R
+                        <i class="fa-solid fa-money-bill-wave ui-icon" aria-hidden="true"></i>
                     </div>
 
                     <div>
@@ -1767,7 +1685,7 @@
                         id="closeApplyForMe"
                         class="close-application-button"
                     >
-                        ← Back to Application Options
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i> Back to Site
                     </button>
 
                 </div>
@@ -1777,484 +1695,6 @@
         </section>
 
 
-        <!-- =====================================================
-             This <style> only hides sections when Apply For Me
-             is open, and hides "hidden" boxes properly. Everything
-             else above already has its look built in with inline
-             styles, so it works with any style.css.
-        ====================================================== -->
-        <style>
-
-            body.apply-mode main > section:not(#applyForMeSection) {
-                display: none;
-            }
-
-            #applyForMeSection[hidden],
-            #applicationSuccess[hidden],
-            #bankDetailsBox[hidden],
-            #cardDetailsBox[hidden] {
-                display: none;
-            }
-
-            .payment-option-card:hover {
-                border-color: #2563eb;
-            }
-
-            .payment-option-card.is-chosen {
-                border-color: #2563eb;
-                background: rgba(37, 99, 235, 0.06);
-            }
-
-            .has-error input,
-            .has-error select,
-            .has-error textarea {
-                border-color: #dc2626;
-            }
-
-            .error-text {
-                display: block;
-                margin-top: 6px;
-                font-size: 0.85rem;
-                color: #dc2626;
-            }
-
-            .file-chosen {
-                display: block;
-                margin-top: 6px;
-                font-size: 0.85rem;
-                color: #16a34a;
-                word-break: break-all;
-            }
-
-            .message-error {
-                padding: 12px 16px;
-                margin-bottom: 16px;
-                border: 1px solid #dc2626;
-                border-radius: 10px;
-                color: #dc2626;
-            }
-
-        </style>
-
-
-        <!-- =====================================================
-             This <script> makes the whole thing work:
-             opening / closing Apply For Me, the payment box,
-             checking the form, sending it to Web3Forms, and
-             showing the success message.
-        ====================================================== -->
-        <script>
-        ( function () {
-
-            const FEE_PER_UNIVERSITY = 5;
-            const MAX_FILE_SIZE = 5 * 1024 * 1024;
-            const MAX_TOTAL_FILE_SIZE = 10 * 1024 * 1024;
-
-            const pageBody = document.body;
-            const applySection = document.getElementById( "applyForMeSection" );
-            const applyForm = document.getElementById( "applyForMeForm" );
-
-            if ( !applySection || !applyForm ) {
-                return;
-            }
-
-            const formMessage = document.getElementById( "applicationFormMessage" );
-            const successBox = document.getElementById( "applicationSuccess" );
-            const paymentAmountInput = document.getElementById( "paymentAmount" );
-            const submitButton = applyForm.querySelector( ".submit-application-button" );
-            const bankDetailsBox = document.getElementById( "bankDetailsBox" );
-            const cardDetailsBox = document.getElementById( "cardDetailsBox" );
-            const applicationReferenceField = document.getElementById( "applicationReferenceField" );
-            const totalToPayField = document.getElementById( "totalToPayField" );
-            const replyToField = document.getElementById( "formReplyTo" );
-
-            const partsToHide = [
-                applyForm,
-                applySection.querySelector( ".application-notice" ),
-                applySection.querySelector( ".application-price-box" ),
-                applySection.querySelector( ".close-application-container" )
-            ];
-
-            let firstError = null;
-            let amountWasTyped = false;
-            let applicationSent = false;
-            const randomNumber = Math.floor( 1000 + Math.random() * 9000 );
-
-
-            // OPEN / CLOSE APPLY FOR ME
-            function openApplyForMe() {
-                applySection.hidden = false;
-                pageBody.classList.add( "apply-mode" );
-                window.scrollTo( 0, 0 );
-            }
-
-            function closeApplyForMe( whereToScroll ) {
-                applySection.hidden = true;
-                pageBody.classList.remove( "apply-mode" );
-
-                if ( applicationSent ) {
-                    resetAfterSubmit();
-                }
-
-                const target = document.querySelector( whereToScroll || ".apply-options" );
-                if ( target ) {
-                    target.scrollIntoView();
-                }
-            }
-
-            document.addEventListener( "click", function ( event ) {
-
-                const clicked = event.target;
-
-                if ( clicked.closest( "#openApplyForMe" ) ) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    openApplyForMe();
-                    return;
-                }
-
-                if ( clicked.closest( "#closeApplyForMe, #backToOptionsTop, #backToHome" ) ) {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    closeApplyForMe();
-                    return;
-                }
-
-                if ( clicked.closest( "#copyReferenceButton" ) ) {
-                    copyText( "#copyReferenceButton", document.getElementById( "paymentReference" ).textContent );
-                    return;
-                }
-
-                if ( clicked.closest( "#copyAccountButton" ) ) {
-                    copyText( "#copyAccountButton", "4118027964" );
-                    return;
-                }
-
-                const link = clicked.closest( 'a[href^="#"]' );
-                if ( link && pageBody.classList.contains( "apply-mode" ) && !applySection.contains( link ) ) {
-                    event.preventDefault();
-                    closeApplyForMe( link.getAttribute( "href" ) );
-                }
-
-            }, true );
-
-            function copyText( buttonSelector, text ) {
-                const button = document.querySelector( buttonSelector );
-                if ( navigator.clipboard ) {
-                    navigator.clipboard.writeText( text ).then( function () {
-                        const oldLabel = button.textContent;
-                        button.textContent = "Copied ✓";
-                        setTimeout( function () {
-                            button.textContent = oldLabel;
-                        }, 2000 );
-                    } );
-                }
-            }
-
-
-            // PAYMENT
-            function countUniversities() {
-                let count = 0;
-
-                if ( document.getElementById( "universityChoice1" ).value !== "" ) {
-                    count = count + 1;
-                }
-
-                if ( document.getElementById( "universityChoice2" ).value !== "" ) {
-                    count = count + 1;
-                }
-
-                const extraLines = document.getElementById( "additionalUniversities" ).value.split( "\n" );
-                extraLines.forEach( function ( line ) {
-                    if ( line.trim() !== "" ) {
-                        count = count + 1;
-                    }
-                } );
-
-                return count;
-            }
-
-            function updatePayment() {
-                const count = countUniversities();
-                const total = count * FEE_PER_UNIVERSITY;
-
-                document.getElementById( "universityCount" ).textContent = count;
-                document.getElementById( "totalToPay" ).textContent = "R" + total.toFixed( 2 );
-
-                if ( !amountWasTyped ) {
-                    paymentAmountInput.value = total > 0 ? total : "";
-                }
-
-                const surname = document.getElementById( "lastName" ).value
-                    .replace( /[^a-zA-Z]/g, "" )
-                    .toUpperCase()
-                    .slice( 0, 6 );
-
-                document.getElementById( "paymentReference" ).textContent =
-                    "UE-" + ( surname || "STUDENT" ) + "-" + randomNumber;
-            }
-
-            function showPaymentMethodDetails() {
-                const chosen = applyForm.querySelector( 'input[name="paymentMethod"]:checked' );
-
-                bankDetailsBox.hidden = true;
-                cardDetailsBox.hidden = true;
-
-                applyForm.querySelectorAll( ".payment-option-card" ).forEach( function ( option ) {
-                    const isChecked = option.querySelector( "input" ).checked;
-                    option.classList.toggle( "is-chosen", isChecked );
-                } );
-
-                if ( !chosen ) {
-                    return;
-                }
-
-                if ( chosen.value === "Card Payment" ) {
-                    cardDetailsBox.hidden = false;
-                } else {
-                    bankDetailsBox.hidden = false;
-                }
-            }
-
-            function showFileNames( input ) {
-                let note = input.parentElement.querySelector( ".file-chosen" );
-
-                if ( !note ) {
-                    note = document.createElement( "span" );
-                    note.className = "file-chosen";
-                    input.parentElement.appendChild( note );
-                }
-
-                const names = [];
-                for ( let i = 0; i < input.files.length; i++ ) {
-                    names.push( input.files[i].name );
-                }
-
-                note.textContent = names.length > 0 ? "✓ " + names.join( ", " ) : "";
-            }
-
-            applyForm.addEventListener( "input", function ( event ) {
-                if ( event.target.id === "paymentAmount" ) {
-                    amountWasTyped = true;
-                }
-                updatePayment();
-            } );
-
-            applyForm.addEventListener( "change", function ( event ) {
-                if ( event.target.name === "paymentMethod" ) {
-                    showPaymentMethodDetails();
-                }
-                if ( event.target.type === "file" ) {
-                    showFileNames( event.target );
-                }
-                updatePayment();
-            } );
-
-
-            // VALIDATION
-            function clearErrors() {
-                applyForm.querySelectorAll( ".has-error" ).forEach( function ( box ) {
-                    box.classList.remove( "has-error" );
-                } );
-                applyForm.querySelectorAll( ".error-text" ).forEach( function ( text ) {
-                    text.remove();
-                } );
-                firstError = null;
-            }
-
-            function showError( field, message ) {
-                const box = field.closest( ".form-group, .document-upload, .checkbox-group label, #paymentOptions" )
-                    || field.parentElement;
-
-                box.classList.add( "has-error" );
-
-                const text = document.createElement( "span" );
-                text.className = "error-text";
-                text.textContent = message;
-                box.appendChild( text );
-
-                if ( firstError === null ) {
-                    firstError = field;
-                }
-            }
-
-            function checkFile( input ) {
-                if ( input.required && input.files.length === 0 ) {
-                    showError( input, "Please upload this document." );
-                    return;
-                }
-
-                for ( let i = 0; i < input.files.length; i++ ) {
-                    const file = input.files[i];
-                    const typeIsOk = /\.(pdf|jpg|jpeg|png)$/i.test( file.name );
-
-                    if ( file.size > MAX_FILE_SIZE ) {
-                        showError( input, file.name + " is bigger than 5 MB." );
-                    } else if ( !typeIsOk ) {
-                        showError( input, file.name + " must be a PDF, JPG or PNG." );
-                    }
-                }
-            }
-
-            function checkForm() {
-                clearErrors();
-
-                const fields = applyForm.elements;
-
-                for ( let i = 0; i < fields.length; i++ ) {
-                    const field = fields[i];
-
-                    if ( field.type === "file" ) {
-                        checkFile( field );
-                    } else if ( field.type === "radio" ) {
-
-                        if ( field.name === "paymentMethod" && field.required ) {
-                            const anyChosen = applyForm.querySelector( 'input[name="paymentMethod"]:checked' );
-                            if ( !anyChosen ) {
-                                showError( field, "Please choose a payment method." );
-                            }
-                        }
-
-                    } else if ( field.type !== "hidden" && field.type !== "submit" && field.type !== "button" && !field.checkValidity() ) {
-
-                        if ( field.type === "checkbox" ) {
-                            showError( field, "Please tick this box." );
-                        } else if ( field.validity.valueMissing ) {
-                            showError( field, "This field is required." );
-                        } else {
-                            showError( field, "Please check this field." );
-                        }
-
-                    }
-                }
-
-                const total = countUniversities() * FEE_PER_UNIVERSITY;
-                if ( paymentAmountInput.value !== "" && Number( paymentAmountInput.value ) < total ) {
-                    showError( paymentAmountInput, "The amount paid must be at least R" + total.toFixed( 2 ) + "." );
-                }
-
-                let totalFileSize = 0;
-                applyForm.querySelectorAll( 'input[type="file"]' ).forEach( function ( input ) {
-                    for ( let i = 0; i < input.files.length; i++ ) {
-                        totalFileSize += input.files[i].size;
-                    }
-                } );
-
-                if ( totalFileSize > MAX_TOTAL_FILE_SIZE ) {
-                    const totalMb = ( totalFileSize / ( 1024 * 1024 ) ).toFixed( 2 );
-                    showMessage( "Your documents are " + totalMb + " MB in total. Please keep all uploaded documents at 10 MB or less.", "error" );
-                    return false;
-                }
-
-                return firstError === null;
-            }
-
-            function showMessage( text, type ) {
-                formMessage.textContent = text;
-                formMessage.className = text ? "form-message message-" + type : "form-message";
-            }
-
-
-            // SEND FORM TO WEB3FORMS
-            // Web3Forms supports fetch()/AJAX submissions that
-            // include file attachments, so we submit with fetch,
-            // wait for the JSON response, and show our own success
-            // screen immediately — no page reload needed.
-            ```javascript
-// SEND FORM TO FORMSUBMIT
-document.addEventListener("submit", function (event) {
-
-    if (event.target !== applyForm) {
-        return;
-    }
-
-    event.preventDefault();
-    event.stopPropagation();
-
-    if (!checkForm()) {
-
-        showMessage(
-            "Please fix the fields marked in red and try again.",
-            "error"
-        );
-
-        if (firstError) {
-
-            firstError.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-            });
-
-            if (firstError.focus) {
-                firstError.focus({
-                    preventScroll: true
-                });
-            }
-        }
-
-        return;
-    }
-
-    showMessage("", "");
-
-    sendApplication();
-
-}, true);
-
-
-
-
-            function finishSubmit( reference, universities, total ) {
-                applicationSent = true;
-
-                document.getElementById( "successReference" ).textContent = reference;
-                document.getElementById( "successUniversities" ).textContent = universities;
-                document.getElementById( "successTotal" ).textContent = "R" + total.toFixed( 2 );
-
-                partsToHide.forEach( function ( part ) {
-                    if ( part ) {
-                        part.hidden = true;
-                    }
-                } );
-
-                successBox.hidden = false;
-
-                submitButton.disabled = false;
-                submitButton.textContent = "SUBMIT APPLICATION";
-
-                window.scrollTo( 0, 0 );
-            }
-
-            function resetAfterSubmit() {
-                applicationSent = false;
-                amountWasTyped = false;
-
-                applyForm.reset();
-                clearErrors();
-
-                applyForm.querySelectorAll( ".file-chosen" ).forEach( function ( note ) {
-                    note.textContent = "";
-                } );
-
-                successBox.hidden = true;
-
-                partsToHide.forEach( function ( part ) {
-                    if ( part ) {
-                        part.hidden = false;
-                    }
-                } );
-
-                showPaymentMethodDetails();
-                updatePayment();
-            }
-
-
-            // START
-            showPaymentMethodDetails();
-            updatePayment();
-
-        } )();
-        </script>
         <!-- =========================
              UNIVERSITIES
         ========================== -->
@@ -2423,8 +1863,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                 <a   href="https://www.cput.ac.za/"
+                                <a
+                                    href="https://www.cput.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2432,8 +1872,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                   <a href="https://www.cput.ac.za/study-at-cput/undergraduate/apply/step-3"
+                                <a
+                                    href="https://www.cput.ac.za/study-at-cput/undergraduate/apply/step-3"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2471,8 +1911,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                  <a  href="https://www.cut.ac.za/"
+                                <a
+                                    href="https://www.cut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2480,8 +1920,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://www.cut.ac.za/admission-online"
+                                <a
+                                    href="https://www.cut.ac.za/admission-online"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2519,8 +1959,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                               <a     href="https://www.dut.ac.za/"
+                                <a
+                                    href="https://www.dut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2528,8 +1968,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://onlineapps.dut.ac.za/psc/psoapprd/EMPLOYEE/SA/c/VC_OA_STD_MENU.VC_OA_APPL_STRT_FL.GBL?OPRID=ONLAPP"
+                                <a
+                                    href="https://onlineapps.dut.ac.za/psc/psoapprd/EMPLOYEE/SA/c/VC_OA_STD_MENU.VC_OA_APPL_STRT_FL.GBL?OPRID=ONLAPP"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2549,7 +1989,7 @@ document.addEventListener("submit", function (event) {
                         data-name="Mangosuthu University of Technology MUT"
                         data-province="KwaZulu-Natal"
                         data-type="University of Technology"
-                        style="--university-image: url('images/mut.png');"
+                        style="--university-image: url('images/mut.jpg');"
                     >
                         <div class="university-card-content">
 
@@ -2567,8 +2007,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                 <a   href="https://www.mut.ac.za/"
+                                <a
+                                    href="https://www.mut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2576,8 +2016,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                  <a  href="https://www.cao.ac.za/"
+                                <a
+                                    href="https://www.cao.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2597,7 +2037,7 @@ document.addEventListener("submit", function (event) {
                         data-name="Nelson Mandela University NMU"
                         data-province="Eastern Cape"
                         data-type="University"
-                        style="--university-image: url('images/mandela.webp');"
+                        style="--university-image: url('images/mandela.jpg');"
                     >
                         <div class="university-card-content">
 
@@ -2615,8 +2055,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                 <a   href="https://www.mandela.ac.za/"
+                                <a
+                                    href="https://www.mandela.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2624,8 +2064,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://applications.mandela.ac.za/"
+                                <a
+                                    href="https://applications.mandela.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2663,8 +2103,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a   href="https://www.nwu.ac.za/"
+                                <a
+                                    href="https://www.nwu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2672,8 +2112,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://applynow.nwu.ac.za/OnlineApplication/"
+                                <a
+                                    href="https://applynow.nwu.ac.za/OnlineApplication/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2711,8 +2151,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.ru.ac.za/"
+                                <a
+                                    href="https://www.ru.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2720,8 +2160,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://ross.ru.ac.za/ugadmissions"
+                                <a
+                                    href="https://ross.ru.ac.za/ugadmissions"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2759,8 +2199,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                               <a     href="https://www.smu.ac.za/"
+                                <a
+                                    href="https://www.smu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2768,8 +2208,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://www.smu.ac.za/students/apply/online-application/"
+                                <a
+                                    href="https://www.smu.ac.za/students/apply/online-application/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2807,8 +2247,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.spu.ac.za/"
+                                <a
+                                    href="https://www.spu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2816,8 +2256,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                <a    href="https://www.spu.ac.za/index.php/apply/"
+                                <a
+                                    href="https://www.spu.ac.za/index.php/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2837,7 +2277,7 @@ document.addEventListener("submit", function (event) {
                         data-name="Stellenbosch University SU"
                         data-province="Western Cape"
                         data-type="University"
-                        style="--university-image: url('images/Stellenbosch.jpg');"
+                        style="--university-image: url('images/stellenbosch.jpg');"
                     >
                         <div class="university-card-content">
 
@@ -2855,8 +2295,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.sun.ac.za/"
+                                <a
+                                    href="https://www.sun.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2864,8 +2304,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://student.sun.ac.za/apply/"
+                                <a
+                                    href="https://student.sun.ac.za/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2885,7 +2325,7 @@ document.addEventListener("submit", function (event) {
                         data-name="Tshwane University of Technology TUT"
                         data-province="Gauteng"
                         data-type="University of Technology"
-                        style="--university-image: url('images/tut.webp');"
+                        style="--university-image: url('images/tut.jpg');"
                     >
                         <div class="university-card-content">
 
@@ -2903,8 +2343,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.tut.ac.za/"
+                                <a
+                                    href="https://www.tut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2912,8 +2352,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://ienabler.tut.ac.za/pls/prodi41/w99pkg.mi_login"
+                                <a
+                                    href="https://ienabler.tut.ac.za/pls/prodi41/w99pkg.mi_login"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2951,8 +2391,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.uct.ac.za/"
+                                <a
+                                    href="https://www.uct.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -2960,8 +2400,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                <a    href="https://applyonline.uct.ac.za/"
+                                <a
+                                    href="https://applyonline.uct.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -2981,7 +2421,7 @@ document.addEventListener("submit", function (event) {
                         data-name="University of Fort Hare UFH"
                         data-province="Eastern Cape"
                         data-type="University"
-                        style="--university-image: url('images/ufh.webp');"
+                        style="--university-image: url('images/fort-hare.jpg');"
                     >
                         <div class="university-card-content">
 
@@ -2999,8 +2439,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                               <a     href="https://www.ufh.ac.za/"
+                                <a
+                                    href="https://www.ufh.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3008,8 +2448,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                <a    href="https://www.ufh.ac.za/apply/"
+                                <a
+                                    href="https://www.ufh.ac.za/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3029,7 +2469,7 @@ document.addEventListener("submit", function (event) {
                         data-name="University of Johannesburg UJ"
                         data-province="Gauteng"
                         data-type="University"
-                        style="--university-image: url('images/uj.avif');"
+                        style="--university-image: url('images/uj.jpg');"
                     >
                         <div class="university-card-content">
 
@@ -3047,8 +2487,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.uj.ac.za/"
+                                <a
+                                    href="https://www.uj.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3056,8 +2496,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://www.uj.ac.za/admissions-aid/"
+                                <a
+                                    href="https://www.uj.ac.za/admissions-aid/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3095,8 +2535,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.ukzn.ac.za/"
+                                <a
+                                    href="https://www.ukzn.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3104,8 +2544,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://caocheck.ukzn.ac.za/"
+                                <a
+                                    href="https://caocheck.ukzn.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3143,8 +2583,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.ul.ac.za/"
+                                <a
+                                    href="https://www.ul.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3152,8 +2592,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                               <a     href="https://www.ul.ac.za/index.php/apply/"
+                                <a
+                                    href="https://www.ul.ac.za/index.php/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3191,8 +2631,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                               <a     href="https://www.ump.ac.za/"
+                                <a
+                                    href="https://www.ump.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3200,8 +2640,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                <a    href="https://www.ump.ac.za/apply-now"
+                                <a
+                                    href="https://www.ump.ac.za/apply-now"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3239,8 +2679,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                               <a     href="https://www.up.ac.za/"
+                                <a
+                                    href="https://www.up.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3248,8 +2688,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                <a    href="https://www.up.ac.za/online-application"
+                                <a
+                                    href="https://www.up.ac.za/online-application"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3287,8 +2727,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.unisa.ac.za/"
+                                <a
+                                    href="https://www.unisa.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3296,8 +2736,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://www.unisa.ac.za/sites/corporate/default/Apply-for-admission"
+                                <a
+                                    href="https://www.unisa.ac.za/sites/corporate/default/Apply-for-admission"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3317,7 +2757,7 @@ document.addEventListener("submit", function (event) {
                         data-name="University of the Free State UFS"
                         data-province="Free State"
                         data-type="University"
-                        style="--university-image: url('images/ufs.webp');"
+                        style="--university-image: url('images/ufs.jpg');"
                     >
                         <div class="university-card-content">
 
@@ -3335,8 +2775,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.ufs.ac.za/"
+                                <a
+                                    href="https://www.ufs.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3344,8 +2784,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                <a    href="https://apply.ufs.ac.za/Application/Start"
+                                <a
+                                    href="https://apply.ufs.ac.za/Application/Start"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3383,8 +2823,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                               <a     href="https://www.uwc.ac.za/"
+                                <a
+                                    href="https://www.uwc.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3392,8 +2832,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                <a    href="https://student.uwc.ac.za/"
+                                <a
+                                    href="https://student.uwc.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3431,8 +2871,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.wits.ac.za/"
+                                <a
+                                    href="https://www.wits.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3440,8 +2880,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                 <a   href="https://self-service.wits.ac.za/"
+                                <a
+                                    href="https://self-service.wits.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3479,8 +2919,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.vut.ac.za/"
+                                <a
+                                    href="https://www.vut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3488,8 +2928,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                <a    href="https://ienabler.vut.ac.za/"
+                                <a
+                                    href="https://ienabler.vut.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3527,8 +2967,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                               <a     href="https://www.unizulu.ac.za/"
+                                <a
+                                    href="https://www.unizulu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3536,8 +2976,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                               <a     href="https://www.unizulu.ac.za/apply/"
+                                <a
+                                    href="https://www.unizulu.ac.za/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3575,8 +3015,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                                <a    href="https://www.wsu.ac.za/"
+                                <a
+                                    href="https://www.wsu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3584,8 +3024,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                <a    href="https://applications.wsu.ac.za/"
+                                <a
+                                    href="https://applications.wsu.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3623,8 +3063,8 @@ document.addEventListener("submit", function (event) {
 
                             <div class="university-buttons">
 
-                                
-                               <a     href="https://www.univen.ac.za/"
+                                <a
+                                    href="https://www.univen.ac.za/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button"
@@ -3632,8 +3072,8 @@ document.addEventListener("submit", function (event) {
                                     Official Website
                                 </a>
 
-                                
-                                <a    href="https://www.univen.ac.za/apply/"
+                                <a
+                                    href="https://www.univen.ac.za/apply/"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                     class="university-button apply"
@@ -3809,7 +3249,7 @@ document.addEventListener("submit", function (event) {
                     <div class="feature-card">
 
                         <div class="feature-icon">
-                            🔎
+                            <i class="fa-solid fa-magnifying-glass ui-icon" aria-hidden="true"></i>
                         </div>
 
                         <h3>
@@ -3827,7 +3267,7 @@ document.addEventListener("submit", function (event) {
                     <div class="feature-card">
 
                         <div class="feature-icon">
-                            
+                            <i class="fa-solid fa-bolt ui-icon" aria-hidden="true"></i>
                         </div>
 
                         <h3>
@@ -3845,7 +3285,7 @@ document.addEventListener("submit", function (event) {
                     <div class="feature-card">
 
                         <div class="feature-icon">
-                            
+                            <i class="fa-solid fa-mobile-screen-button ui-icon" aria-hidden="true"></i>
                         </div>
 
                         <h3>
@@ -3958,10 +3398,11 @@ document.addEventListener("submit", function (event) {
                         </summary>
 
                         <p>
-                            Yes. When you submit your application through
-                            Apply For Me, your information and documents
-                            are sent straight to the UniEasy team so we
-                            can begin processing it.
+                            The current UniEasy website is a front-end
+                            prototype. A secure backend and application
+                            management system still need to be connected
+                            before real applications can be submitted
+                            through UniEasy.
                         </p>
 
                     </details>
@@ -4010,14 +3451,14 @@ document.addEventListener("submit", function (event) {
                         </h3>
 
                         <p>
-                            
+                            <i class="fa-solid fa-envelope ui-icon" aria-hidden="true"></i>
                             <a href="mailto:unieasyy@gmail.com">
                                 unieasyy@gmail.com
                             </a>
                         </p>
 
                         <p>
-                            
+                            <i class="fa-solid fa-phone ui-icon" aria-hidden="true"></i>
                             <a href="tel:+27674435498">
                                 067 443 5498
                             </a>
@@ -4214,7 +3655,7 @@ document.addEventListener("submit", function (event) {
             <div>
 
                 <h2>
-                    Cookies on UniEasy
+                    <i class="fa-solid fa-cookie-bite ui-icon" aria-hidden="true"></i> Cookies on UniEasy
                 </h2>
 
                 <p>
@@ -4263,6 +3704,136 @@ document.addEventListener("submit", function (event) {
         ↑
     </button>
 
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const applyButton = document.getElementById("openApplyForMe");
+            const applySection = document.getElementById("applyForMeSection");
+            const backButton = document.getElementById("backToSiteButton");
+            const closeButton = document.getElementById("closeApplyForMe");
+
+            const university1 = document.getElementById("universityChoice1");
+            const university2 = document.getElementById("universityChoice2");
+            const additionalUniversities = document.getElementById("additionalUniversities");
+
+            const countDisplay = document.getElementById("selectedUniversityCount");
+            const totalDisplay = document.getElementById("selectedUniversityTotal");
+
+            const FEE_PER_UNIVERSITY = 5;
+
+            function getAdditionalUniversityCount() {
+                const value = additionalUniversities
+                    ? additionalUniversities.value.trim()
+                    : "";
+
+                if (!value) {
+                    return 0;
+                }
+
+                return value
+                    .split(/[\n,;]+/)
+                    .map(function (item) {
+                        return item.trim();
+                    })
+                    .filter(function (item) {
+                        return item.length > 0;
+                    })
+                    .length;
+            }
+
+            function updatePaymentSummary() {
+                let count = 0;
+
+                if (university1 && university1.value) {
+                    count++;
+                }
+
+                if (university2 && university2.value) {
+                    count++;
+                }
+
+                count += getAdditionalUniversityCount();
+
+                if (count < 1) {
+                    count = 0;
+                }
+
+                const total = count * FEE_PER_UNIVERSITY;
+
+                if (countDisplay) {
+                    countDisplay.textContent = count;
+                }
+
+                if (totalDisplay) {
+                    totalDisplay.textContent = "R" + total;
+                }
+            }
+
+            function showApplyForMe() {
+                if (applySection) {
+                    applySection.hidden = false;
+                }
+
+                document.body.classList.add("apply-for-me-mode");
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+                updatePaymentSummary();
+            }
+
+            function returnToSite() {
+                document.body.classList.remove("apply-for-me-mode");
+
+                if (applySection) {
+                    applySection.hidden = true;
+                }
+
+                const home = document.getElementById("home");
+
+                if (home) {
+                    home.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            }
+
+            if (applyButton) {
+                applyButton.addEventListener("click", showApplyForMe);
+            }
+
+            if (backButton) {
+                backButton.addEventListener("click", returnToSite);
+            }
+
+            if (closeButton) {
+                closeButton.addEventListener("click", returnToSite);
+            }
+
+            [university1, university2, additionalUniversities].forEach(function (element) {
+                if (element) {
+                    element.addEventListener("change", updatePaymentSummary);
+                    element.addEventListener("input", updatePaymentSummary);
+                }
+            });
+
+            updatePaymentSummary();
+
+            /*
+             * Make sure the normal site is the default view.
+             */
+            document.body.classList.remove("apply-for-me-mode");
+
+            if (applySection) {
+                applySection.hidden = true;
+            }
+        });
+    </script>
 
     <script src="script.js"></script>
 
