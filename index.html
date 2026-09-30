@@ -2166,34 +2166,49 @@
             // include file attachments, so we submit with fetch,
             // wait for the JSON response, and show our own success
             // screen immediately — no page reload needed.
-            document.addEventListener( "submit", function ( event ) {
-                if ( event.target !== applyForm ) {
-                    return;
-                }
+            ```javascript
+// SEND FORM TO FORMSUBMIT
+document.addEventListener("submit", function (event) {
 
-                event.preventDefault();
-                event.stopPropagation();
+    if (event.target !== applyForm) {
+        return;
+    }
 
-                if ( !checkForm() ) {
-                    showMessage( "Please fix the fields marked in red and try again.", "error" );
+    event.preventDefault();
+    event.stopPropagation();
 
-                    if ( firstError ) {
-                        firstError.scrollIntoView( { behavior: "smooth", block: "center" } );
+    if (!checkForm()) {
 
-                        if ( firstError.focus ) {
-                            firstError.focus( { preventScroll: true } );
-                        }
-                    }
+        showMessage(
+            "Please fix the fields marked in red and try again.",
+            "error"
+        );
 
-                    return;
-                }
+        if (firstError) {
 
-                showMessage( "", "" );
-                sendApplication();
+            firstError.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
 
-            }, true );
+            if (firstError.focus) {
+                firstError.focus({
+                    preventScroll: true
+                });
+            }
+        }
 
-            function sendApplication() {
+        return;
+    }
+
+    showMessage("", "");
+
+    sendApplication();
+
+}, true);
+
+
+function sendApplication() {
 
     const reference =
         "UEA-" +
@@ -2206,9 +2221,9 @@
         universities * FEE_PER_UNIVERSITY;
 
 
+    /* Put the applicant's email into the reply-to field */
     const applicantEmail =
         applyForm.querySelector('input[name="email"]');
-
 
     if (applicantEmail && replyToField) {
 
@@ -2218,6 +2233,7 @@
     }
 
 
+    /* Save application information */
     applicationReferenceField.value =
         reference;
 
@@ -2225,44 +2241,71 @@
         "R" + total.toFixed(2);
 
 
+    /* Disable button while submitting */
     submitButton.disabled = true;
 
     submitButton.textContent =
         "SENDING...";
 
 
+    /*
+       FormSubmit receives the form directly.
+
+       The form action is:
+
+       https://formsubmit.co/unieasyyy@gmail.com
+
+       The FormData contains all normal fields and
+       selected file inputs.
+    */
     const data =
         new FormData(applyForm);
 
 
-    fetch(applyForm.action, {
-
-        method: "POST",
-
-        body: data,
-
-        headers: {
-            "Accept": "application/json"
+    fetch(
+        "https://formsubmit.co/unieasyyy@gmail.com",
+        {
+            method: "POST",
+            body: data,
+            headers: {
+                "Accept": "application/json"
+            }
         }
+    )
 
-    })
+    .then(function (response) {
 
-    .then(function(response) {
+        if (!response.ok) {
+
+            throw new Error(
+                "FormSubmit returned server error " +
+                response.status
+            );
+
+        }
 
         return response.text();
 
     })
 
-    .then(function(responseText) {
+    .then(function (responseText) {
 
         console.log(
-            "Web3Forms response:",
+            "FormSubmit response:",
             responseText
         );
 
 
-        let result;
+        /*
+           FormSubmit normally returns a JSON response
+           when the Accept header requests JSON.
 
+           Some responses may be empty or may not be
+           JSON, so we do not treat non-JSON text alone
+           as an application failure.
+        */
+
+        let result = null;
 
         try {
 
@@ -2271,26 +2314,25 @@
 
         } catch (error) {
 
-            throw new Error(
-                "The server returned an unexpected response: " +
-                responseText.substring(0, 300)
-            );
+            result = null;
 
         }
 
 
         if (
+            result &&
             result.success === false
         ) {
 
             throw new Error(
                 result.message ||
-                "Web3Forms rejected the application."
+                "FormSubmit rejected the application."
             );
 
         }
 
 
+        /* Show the UniEasy success screen */
         finishSubmit(
             reference,
             universities,
@@ -2299,10 +2341,10 @@
 
     })
 
-    .catch(function(error) {
+    .catch(function (error) {
 
         console.error(
-            "UniEasy submission error:",
+            "UniEasy FormSubmit error:",
             error
         );
 
@@ -2310,6 +2352,7 @@
         showMessage(
 
             "Application could not be sent. " +
+            "Please try again. " +
             "Server message: " +
             error.message,
 
@@ -2326,6 +2369,8 @@
     });
 
 }
+```
+
             function finishSubmit( reference, universities, total ) {
                 applicationSent = true;
 
