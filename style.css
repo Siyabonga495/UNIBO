@@ -485,6 +485,225 @@ textarea { resize: vertical; min-height: 100px; }
 .document-upload input { margin-top: 5px; border: 0; padding: 8px 0; background: transparent; }
 .document-upload small { display: block; color: var(--muted); margin-top: 5px; }
 
+/* =========================================================
+   APPLICATION SUCCESS MESSAGE
+   ========================================================= */
+
+.application-success-message {
+    max-width: 900px;
+    margin: 0 auto 35px;
+    padding: 45px 35px;
+    text-align: center;
+    border: 1px solid #ead7a0;
+    border-radius: 24px;
+    background:
+        linear-gradient(
+            135deg,
+            #fffdf5 0%,
+            #fff8df 50%,
+            #fff 100%
+        );
+    box-shadow: 0 25px 60px rgba(28, 25, 23, 0.12);
+    animation: successMessageIn 0.6s ease forwards;
+}
+
+.dark-mode .application-success-message {
+    background:
+        linear-gradient(
+            135deg,
+            #241b0c 0%,
+            #30230c 50%,
+            #1c1917 100%
+        );
+    border-color: #70570b;
+}
+
+.success-check-icon {
+    width: 76px;
+    height: 76px;
+    margin: 0 auto 20px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: linear-gradient(
+        135deg,
+        #d4a017,
+        #a87c00
+    );
+    color: white;
+    font-size: 2rem;
+    box-shadow:
+        0 12px 30px rgba(168, 124, 0, 0.25);
+    animation: successCheckPop 0.55s ease 0.15s both;
+}
+
+.success-label {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: #8a6508;
+    font-size: 0.78rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+}
+
+.dark-mode .success-label {
+    color: #e8c45a;
+}
+
+.application-success-message h2 {
+    margin-bottom: 12px;
+    color: var(--dark);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    line-height: 1.2;
+}
+
+.dark-mode .application-success-message h2 {
+    color: white;
+}
+
+.application-success-message > p {
+    max-width: 650px;
+    margin: 0 auto;
+    color: var(--muted);
+    font-size: 0.98rem;
+}
+
+.success-status-card {
+    max-width: 680px;
+    margin: 28px auto;
+    padding: 5px;
+    border: 1px solid #eadfbd;
+    border-radius: 16px;
+    background: rgba(255, 255, 255, 0.72);
+    text-align: left;
+}
+
+.dark-mode .success-status-card {
+    background: rgba(28, 25, 23, 0.75);
+    border-color: #5c4915;
+}
+
+.success-status-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+    color: #57534e;
+}
+
+.dark-mode .success-status-row {
+    color: #d6d3d1;
+}
+
+.success-status-row + .success-status-row {
+    border-top: 1px solid #eee5ca;
+}
+
+.dark-mode .success-status-row + .success-status-row {
+    border-top-color: #403719;
+}
+
+.success-status-row i {
+    flex-shrink: 0;
+    margin-top: 4px;
+    color: #a87c00;
+}
+
+.dark-mode .success-status-row i {
+    color: #e8c45a;
+}
+
+.success-status-row strong {
+    color: #7a5a00;
+}
+
+.dark-mode .success-status-row strong {
+    color: #e8c45a;
+}
+
+.success-back-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    min-height: 48px;
+    padding: 12px 22px;
+    border: 0;
+    border-radius: 12px;
+    color: white;
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        #e0243f
+    );
+    font-weight: 800;
+    box-shadow: 0 10px 22px rgba(200, 16, 46, 0.20);
+    transition: var(--transition);
+}
+
+.success-back-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 28px rgba(200, 16, 46, 0.28);
+}
+
+.success-back-button:active {
+    transform: translateY(0) scale(0.98);
+}
+
+@keyframes successMessageIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes successCheckPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+
+    70% {
+        transform: scale(1.08);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 600px) {
+
+    .application-success-message {
+        padding: 35px 20px;
+        border-radius: 20px;
+    }
+
+    .success-check-icon {
+        width: 68px;
+        height: 68px;
+        font-size: 1.7rem;
+    }
+
+    .application-success-message h2 {
+        font-size: 1.8rem;
+    }
+
+    .success-status-row {
+        padding: 13px;
+    }
+
+    .success-back-button {
+        width: 100%;
+    }
+}
+
 /* SUBMIT AREA */
 .application-submit-area { text-align: center; padding: 20px 0; }
 
