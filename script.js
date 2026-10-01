@@ -343,35 +343,43 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
 
-    /* =========================
+   /* =========================
    APPLICATION FORM
+   FORM SUBMISSION + SUCCESS MESSAGE
 ========================== */
 
 const applicationForm =
     document.getElementById("applyForMeForm");
 
 const applicationMessage =
-    document.getElementById(
-        "applicationFormMessage"
-    );
+    document.getElementById("applicationFormMessage");
+
+const applicationSuccessMessage =
+    document.getElementById("applicationSuccessMessage");
+
+const successBackToSiteButton =
+    document.getElementById("successBackToSiteButton");
+
+const submitApplicationButton =
+    applicationForm
+        ? applicationForm.querySelector(
+            'button[type="submit"]'
+        )
+        : null;
 
 
 if (applicationForm) {
 
     applicationForm.addEventListener(
         "submit",
-        function (event) {
+        async function (event) {
 
-            /*
-             * Do NOT use event.preventDefault().
-             *
-             * FormSubmit needs the browser to
-             * actually submit the form.
-             */
+            /* Stop the browser from leaving the page */
+            event.preventDefault();
 
+
+            /* Check required fields */
             if (!applicationForm.checkValidity()) {
-
-                event.preventDefault();
 
                 applicationForm.reportValidity();
 
@@ -379,19 +387,170 @@ if (applicationForm) {
 
             }
 
-            /*
-             * If the form is valid, nothing else
-             * is needed here.
-             *
-             * The browser will submit the form
-             * to the FormSubmit action in HTML.
-             */
+
+            /* Clear previous message */
+            if (applicationMessage) {
+
+                applicationMessage.textContent = "";
+
+                applicationMessage.className =
+                    "form-message";
+
+            }
+
+
+            /* Disable submit button */
+            if (submitApplicationButton) {
+
+                submitApplicationButton.disabled = true;
+
+                submitApplicationButton.innerHTML =
+                    '<i class="fa-solid fa-spinner fa-spin ui-icon" aria-hidden="true"></i> SUBMITTING...';
+
+            }
+
+
+            try {
+
+                /*
+                 * FormData automatically includes:
+                 * - all text fields
+                 * - dropdowns
+                 * - checkboxes
+                 * - uploaded documents
+                 */
+
+                const formData =
+                    new FormData(applicationForm);
+
+
+                /*
+                 * Send the form to FormSubmit
+                 */
+
+                const response =
+                    await fetch(
+                        applicationForm.action,
+                        {
+                            method: "POST",
+                            body: formData,
+                            headers: {
+                                "Accept": "application/json"
+                            }
+                        }
+                    );
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        "Application submission failed."
+                    );
+
+                }
+
+
+                /* =========================
+                   SUCCESS
+                ========================== */
+
+                applicationForm.hidden = true;
+
+
+                if (applicationSuccessMessage) {
+
+                    applicationSuccessMessage.hidden = false;
+
+                    applicationSuccessMessage.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+
+                }
+
+
+            } catch (error) {
+
+                console.error(
+                    "UniEasy submission error:",
+                    error
+                );
+
+
+                /* =========================
+                   ERROR MESSAGE
+                ========================== */
+
+                if (applicationMessage) {
+
+                    applicationMessage.textContent =
+                        "Something went wrong while sending your application. Please check your internet connection and try again.";
+
+                    applicationMessage.className =
+                        "form-message error";
+
+                }
+
+
+                /* Re-enable button */
+
+                if (submitApplicationButton) {
+
+                    submitApplicationButton.disabled = false;
+
+                    submitApplicationButton.innerHTML =
+                        '<i class="fa-solid fa-paper-plane ui-icon" aria-hidden="true"></i> SUBMIT APPLICATION';
+
+                }
+
+            }
 
         }
     );
 
 }
 
+
+/* =========================
+   SUCCESS MESSAGE → BACK TO SITE
+========================== */
+
+if (successBackToSiteButton) {
+
+    successBackToSiteButton.addEventListener(
+        "click",
+        function () {
+
+            if (applicationSuccessMessage) {
+
+                applicationSuccessMessage.hidden = true;
+
+            }
+
+
+            if (applicationForm) {
+
+                applicationForm.hidden = false;
+
+            }
+
+
+            if (applyForMeSection) {
+
+                applyForMeSection.hidden = true;
+
+            }
+
+
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+
+        }
+    );
+
+}
 
     /* =========================
        FILE SIZE VALIDATION
