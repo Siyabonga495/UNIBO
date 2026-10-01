@@ -353,6 +353,57 @@
 
                 </div>
 
+                <!-- =========================
+                     APPLICATION SUCCESS MESSAGE
+                     HIDDEN UNTIL SUBMISSION SUCCEEDS
+                ========================== -->
+                <div
+                    id="applicationSuccessMessage"
+                    class="application-success-message"
+                    hidden
+                    role="status"
+                    aria-live="polite"
+                >
+                    <div class="success-check-icon" aria-hidden="true">
+                        <i class="fa-solid fa-check"></i>
+                    </div>
+
+                    <span class="success-label">APPLICATION RECEIVED</span>
+
+                    <h2>Application Submitted Successfully</h2>
+
+                    <p>
+                        Thank you for choosing UniEasy. Your application
+                        and uploaded documents have been received successfully.
+                    </p>
+
+                    <div class="success-status-card">
+                        <div class="success-status-row">
+                            <i class="fa-solid fa-circle-check" aria-hidden="true"></i>
+                            <span>
+                                <strong>Status:</strong> Submitted successfully
+                            </span>
+                        </div>
+
+                        <div class="success-status-row">
+                            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+                            <span>
+                                Our team will review your information and contact
+                                you if anything else is required.
+                            </span>
+                        </div>
+                    </div>
+
+                    <button
+                        type="button"
+                        id="successBackToSiteButton"
+                        class="success-back-button"
+                    >
+                        <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                        Back to Site
+                    </button>
+                </div>
+
 
                 <!-- =========================
                      APPLICATION FORM
