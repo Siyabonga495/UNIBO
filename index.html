@@ -149,6 +149,196 @@
                 gap: 2px;
             }
         }
+
+        /* =========================================================
+           UNIEASY - APPLY BY MYSELF DEDICATED VIEW + STUDENT HUB
+        ========================================================= */
+        body.apply-by-myself-mode .site-header,
+        body.apply-by-myself-mode #home,
+        body.apply-by-myself-mode #studentToolsSection,
+        body.apply-by-myself-mode #applyForMeSection,
+        body.apply-by-myself-mode #how-it-works,
+        body.apply-by-myself-mode #about,
+        body.apply-by-myself-mode #faq,
+        body.apply-by-myself-mode #contact,
+        body.apply-by-myself-mode .site-footer,
+        body.apply-by-myself-mode #cookieBanner,
+        body.apply-by-myself-mode #backToTop {
+            display: none !important;
+        }
+
+        body.apply-by-myself-mode #mainContent {
+            display: block !important;
+        }
+
+        .student-tools-section {
+            padding: 10px 0 50px;
+        }
+
+        .student-tools-section .section-heading {
+            margin-bottom: 10px;
+        }
+
+        .apply-myself-tools {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .student-tool-card {
+            padding: 24px;
+            border-radius: 18px;
+            border: 1px solid rgba(37,99,235,.15);
+            background: var(--card-background, #fff);
+            box-shadow: 0 8px 25px rgba(0,0,0,.07);
+        }
+
+        .student-tool-icon {
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: rgba(37,99,235,.1);
+            margin-bottom: 14px;
+            font-size: 20px;
+        }
+
+        .student-tool-card h3 { margin: 0 0 8px; }
+        .student-tool-card p { margin: 0 0 16px; }
+
+        .student-tool-panel {
+            margin-top: 16px;
+            padding: 16px;
+            border-radius: 12px;
+            background: rgba(37,99,235,.05);
+        }
+
+        .deadline-item,
+        .news-item,
+        .calendar-item,
+        .course-result {
+            padding: 14px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            background: rgba(0,0,0,.035);
+        }
+
+        .deadline-item:last-child,
+        .news-item:last-child,
+        .calendar-item:last-child,
+        .course-result:last-child { margin-bottom: 0; }
+
+        .deadline-days {
+            font-weight: 800;
+            margin-top: 5px;
+        }
+
+        .tool-search,
+        .tool-select {
+            width: 100%;
+            padding: 11px 13px;
+            border: 1px solid rgba(0,0,0,.15);
+            border-radius: 9px;
+            margin-bottom: 12px;
+            background: inherit;
+        }
+
+        .tool-button {
+            border: 0;
+            border-radius: 9px;
+            padding: 10px 15px;
+            cursor: pointer;
+            font-weight: 700;
+            background: #c8102e;
+            color: #fff;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            margin-top: 12px;
+        }
+
+        .calendar-day {
+            min-height: 48px;
+            padding: 7px;
+            border-radius: 7px;
+            background: rgba(0,0,0,.035);
+            font-size: .85rem;
+        }
+
+        .calendar-day.has-date {
+            border: 2px solid #c8102e;
+            font-weight: 700;
+        }
+
+        .calendar-day small {
+            display: block;
+            margin-top: 4px;
+            font-size: .7rem;
+        }
+
+        .apply-myself-header {
+            padding: 35px 0 10px;
+        }
+
+        .apply-myself-header .back-to-site-button {
+            margin-bottom: 20px;
+        }
+
+        .apply-myself-tools-section {
+            padding-bottom: 20px;
+        }
+
+        @media (max-width: 900px) {
+            .apply-myself-tools {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 600px) {
+            .apply-myself-tools {
+                grid-template-columns: 1fr;
+            }
+
+            .calendar-grid {
+                gap: 3px;
+            }
+
+            .calendar-day {
+                min-height: 42px;
+                padding: 5px;
+                font-size: .75rem;
+            }
+        }
+
+        body.dark-mode .student-tool-card {
+            background: #1f1f1f;
+        }
+
+        body.dark-mode .deadline-item,
+        body.dark-mode .news-item,
+        body.dark-mode .calendar-item,
+        body.dark-mode .course-result,
+        body.dark-mode .calendar-day {
+            background: rgba(255,255,255,.06);
+        }
+
+    
+        /* University discovery belongs to Apply By Myself and is hidden until opened. */
+        #universities {
+            display: none;
+        }
+
+        body.apply-by-myself-mode #universities {
+            display: block !important;
+        }
+
+
     </style>
 
 </head>
@@ -261,12 +451,13 @@
                                 official application system.
                             </p>
 
-                            <a
-                                href="#universities"
+                            <button
+                                type="button"
+                                id="openApplyByMyself"
                                 class="apply-btn apply-btn-primary"
                             >
                                 APPLY BY MYSELF
-                            </a>
+                            </button>
 
                         </div>
 
@@ -300,6 +491,182 @@
                     </div>
 
                 </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =====================================================
+             STUDENT HUB - MAIN PAGE
+        ====================================================== -->
+        <section id="studentToolsSection" class="student-tools-section">
+
+            <div class="container">
+
+                <div class="section-heading">
+                    <span class="section-label">STUDENT HUB</span>
+                    <h2>Everything Students Need</h2>
+                    <p>
+                        Check application deadlines, find courses, get NSFAS information
+                        and keep up with important student updates.
+                    </p>
+                </div>
+
+                <div class="apply-myself-tools-section">
+
+                    <div class="apply-myself-tools">
+
+                        <!-- 1. DEADLINE COUNTDOWN -->
+                        <article class="student-tool-card">
+                            <div class="student-tool-icon">
+                                <i class="fa-solid fa-hourglass-half" aria-hidden="true"></i>
+                            </div>
+                            <h3>Application Deadline Countdown</h3>
+                            <p>See how much time remains before a confirmed application deadline.</p>
+
+                            <select id="deadlineUniversitySelect" class="tool-select">
+                                <option value="">Select a university</option>
+                                <option value="CPUT">CPUT</option>
+                                <option value="CUT">CUT</option>
+                                <option value="DUT">DUT</option>
+                                <option value="MUT">MUT</option>
+                                <option value="NMU">Nelson Mandela University</option>
+                                <option value="NWU">North-West University</option>
+                                <option value="RU">Rhodes University</option>
+                                <option value="SMU">Sefako Makgatho Health Sciences University</option>
+                                <option value="SPU">Sol Plaatje University</option>
+                                <option value="SU">Stellenbosch University</option>
+                                <option value="TUT">Tshwane University of Technology</option>
+                                <option value="UCT">University of Cape Town</option>
+                                <option value="UFH">University of Fort Hare</option>
+                                <option value="UJ">University of Johannesburg</option>
+                                <option value="UKZN">University of KwaZulu-Natal</option>
+                                <option value="UL">University of Limpopo</option>
+                                <option value="UMP">University of Mpumalanga</option>
+                                <option value="UP">University of Pretoria</option>
+                                <option value="UNISA">University of South Africa</option>
+                                <option value="UFS">University of the Free State</option>
+                                <option value="UWC">University of the Western Cape</option>
+                                <option value="WITS">University of the Witwatersrand</option>
+                                <option value="VUT">Vaal University of Technology</option>
+                                <option value="UNIZULU">University of Zululand</option>
+                                <option value="WSU">Walter Sisulu University</option>
+                                <option value="UNIVEN">University of Venda</option>
+                            </select>
+
+                            <div id="deadlineCountdownResult" class="student-tool-panel">
+                                Select a university to view its confirmed deadline.
+                            </div>
+                        </article>
+
+                        <!-- 2. APPLICATIONS CALENDAR -->
+                        <article class="student-tool-card">
+                            <div class="student-tool-icon">
+                                <i class="fa-solid fa-calendar-days" aria-hidden="true"></i>
+                            </div>
+                            <h3>Applications Calendar</h3>
+                            <p>Keep important application dates together in one calendar.</p>
+
+                            <div class="calendar-item">
+                                <strong>2027 Application Cycle</strong>
+                                <p>
+                                    Dates will appear here as UniEasy adds confirmed
+                                    official university deadlines.
+                                </p>
+                            </div>
+
+                            <div id="applicationsCalendar" class="calendar-grid"></div>
+                        </article>
+
+                        <!-- 3. COURSE FINDER -->
+                        <article class="student-tool-card">
+                            <div class="student-tool-icon">
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                            </div>
+                            <h3>Course Finder</h3>
+                            <p>Search the starter course directory by course or university.</p>
+
+                            <input
+                                type="search"
+                                id="courseFinderInput"
+                                class="tool-search"
+                                placeholder="e.g. Computer Science"
+                            >
+
+                            <div id="courseFinderResults" class="student-tool-panel">
+                                Type a course name to search.
+                            </div>
+                        </article>
+
+                        <!-- 4. NSFAS HUB -->
+                        <article class="student-tool-card">
+                            <div class="student-tool-icon">
+                                <i class="fa-solid fa-money-check-dollar" aria-hidden="true"></i>
+                            </div>
+                            <h3>NSFAS Hub</h3>
+                            <p>Keep NSFAS information in one easy-to-find place.</p>
+
+                            <div class="student-tool-panel">
+                                <strong>What you can find here</strong>
+                                <ul>
+                                    <li>NSFAS application information</li>
+                                    <li>Funding guidance</li>
+                                    <li>Important application updates</li>
+                                    <li>Links to official NSFAS information</li>
+                                </ul>
+                                <a
+                                    href="https://www.nsfas.org.za/"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    class="tool-button"
+                                    style="display:inline-block;text-decoration:none;margin-top:10px;"
+                                >
+                                    OPEN NSFAS
+                                </a>
+                            </div>
+                        </article>
+
+                        <!-- 5. CLOSING SOON -->
+                        <article class="student-tool-card">
+                            <div class="student-tool-icon">
+                                <i class="fa-solid fa-clock" aria-hidden="true"></i>
+                            </div>
+                            <h3>Closing Soon</h3>
+                            <p>Universities with confirmed upcoming deadlines will appear here.</p>
+
+                            <div id="closingSoonList" class="student-tool-panel">
+                                Checking confirmed deadline data...
+                            </div>
+                        </article>
+
+                        <!-- 6. STUDENT NEWS -->
+                        <article class="student-tool-card">
+                            <div class="student-tool-icon">
+                                <i class="fa-solid fa-newspaper" aria-hidden="true"></i>
+                            </div>
+                            <h3>Student News</h3>
+                            <p>Important student updates such as applications and registrations.</p>
+
+                            <div class="student-tool-panel">
+                                <div class="news-item">
+                                    <strong>Application Updates</strong>
+                                    <p>Check university application dates before applying.</p>
+                                </div>
+                                <div class="news-item">
+                                    <strong>Registration Updates</strong>
+                                    <p>Registration announcements can be added here as universities publish them.</p>
+                                </div>
+                                <div class="news-item">
+                                    <strong>Funding Updates</strong>
+                                    <p>Look out for important NSFAS and bursary announcements.</p>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+
+
 
             </div>
 
@@ -1755,6 +2122,7 @@
         </section>
 
 
+
         <!-- =========================
              UNIVERSITIES
         ========================== -->
@@ -1764,6 +2132,15 @@
         >
 
             <div class="container">
+
+                <button
+                    type="button"
+                    id="backFromApplyByMyself"
+                    class="back-to-site-button"
+                >
+                    <i class="fa-solid fa-arrow-left" aria-hidden="true"></i>
+                    Back to Home
+                </button>
 
                 <div class="section-heading">
 
@@ -3897,6 +4274,331 @@
     </button>
 
 
+
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const openApplyByMyself = document.getElementById("openApplyByMyself");
+            const backFromApplyByMyself = document.getElementById("backFromApplyByMyself");
+
+            function showApplyByMyself() {
+                document.body.classList.add("apply-by-myself-mode");
+
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+
+                renderApplicationCalendar();
+                renderClosingSoon();
+            }
+
+            function hideApplyByMyself() {
+                document.body.classList.remove("apply-by-myself-mode");
+
+                const home = document.getElementById("home");
+
+                if (home) {
+                    home.scrollIntoView({
+                        behavior: "smooth",
+                        block: "start"
+                    });
+                }
+            }
+
+            if (openApplyByMyself) {
+                openApplyByMyself.addEventListener("click", showApplyByMyself);
+            }
+
+            if (backFromApplyByMyself) {
+                backFromApplyByMyself.addEventListener("click", hideApplyByMyself);
+            }
+
+            /*
+             * Deadline data:
+             * Only confirmed dates should be entered here.
+             * An empty value deliberately displays "Not confirmed yet"
+             * instead of inventing a university deadline.
+             */
+            const deadlineData = {
+                CPUT: null,
+                CUT: null,
+                DUT: null,
+                MUT: null,
+                NMU: null,
+                NWU: null,
+                RU: null,
+                SMU: null,
+                SPU: null,
+                SU: null,
+                TUT: null,
+                UCT: null,
+                UFH: null,
+                UJ: null,
+                UKZN: null,
+                UL: null,
+                UMP: null,
+                UP: null,
+                UNISA: null,
+                UFS: null,
+                UWC: null,
+                WITS: null,
+                VUT: null,
+                UNIZULU: null,
+                WSU: null,
+                UNIVEN: null
+            };
+
+            const universityNames = {
+                CPUT: "Cape Peninsula University of Technology",
+                CUT: "Central University of Technology",
+                DUT: "Durban University of Technology",
+                MUT: "Mangosuthu University of Technology",
+                NMU: "Nelson Mandela University",
+                NWU: "North-West University",
+                RU: "Rhodes University",
+                SMU: "Sefako Makgatho Health Sciences University",
+                SPU: "Sol Plaatje University",
+                SU: "Stellenbosch University",
+                TUT: "Tshwane University of Technology",
+                UCT: "University of Cape Town",
+                UFH: "University of Fort Hare",
+                UJ: "University of Johannesburg",
+                UKZN: "University of KwaZulu-Natal",
+                UL: "University of Limpopo",
+                UMP: "University of Mpumalanga",
+                UP: "University of Pretoria",
+                UNISA: "University of South Africa",
+                UFS: "University of the Free State",
+                UWC: "University of the Western Cape",
+                WITS: "University of the Witwatersrand",
+                VUT: "Vaal University of Technology",
+                UNIZULU: "University of Zululand",
+                WSU: "Walter Sisulu University",
+                UNIVEN: "University of Venda"
+            };
+
+            const deadlineSelect = document.getElementById("deadlineUniversitySelect");
+            const countdownResult = document.getElementById("deadlineCountdownResult");
+
+            function showDeadline() {
+                if (!deadlineSelect || !countdownResult) return;
+
+                const code = deadlineSelect.value;
+
+                if (!code) {
+                    countdownResult.textContent =
+                        "Select a university to view its confirmed deadline.";
+                    return;
+                }
+
+                const deadline = deadlineData[code];
+
+                if (!deadline) {
+                    countdownResult.innerHTML =
+                        "<strong>" + universityNames[code] + "</strong><br>" +
+                        "Deadline not confirmed yet. UniEasy will show the countdown " +
+                        "once a confirmed official date is entered.";
+                    return;
+                }
+
+                const target = new Date(deadline + "T23:59:59");
+                const now = new Date();
+                const difference = target.getTime() - now.getTime();
+                const days = Math.ceil(difference / 86400000);
+
+                if (days < 0) {
+                    countdownResult.innerHTML =
+                        "<strong>" + universityNames[code] + "</strong><br>" +
+                        "<span class='deadline-days'>Applications have closed.</span>";
+                } else if (days === 0) {
+                    countdownResult.innerHTML =
+                        "<strong>" + universityNames[code] + "</strong><br>" +
+                        "<span class='deadline-days'>Deadline is today.</span>";
+                } else {
+                    countdownResult.innerHTML =
+                        "<strong>" + universityNames[code] + "</strong><br>" +
+                        "<span class='deadline-days'>" + days + " days remaining</span><br>" +
+                        "Deadline: " + deadline;
+                }
+            }
+
+            if (deadlineSelect) {
+                deadlineSelect.addEventListener("change", showDeadline);
+            }
+
+            /*
+             * Applications Calendar
+             */
+            function renderApplicationCalendar() {
+                const calendar = document.getElementById("applicationsCalendar");
+                if (!calendar) return;
+
+                calendar.innerHTML = "";
+
+                const entries = Object.keys(deadlineData)
+                    .filter(function (code) {
+                        return deadlineData[code];
+                    })
+                    .map(function (code) {
+                        return {
+                            code: code,
+                            name: universityNames[code],
+                            date: deadlineData[code]
+                        };
+                    });
+
+                if (!entries.length) {
+                    calendar.innerHTML =
+                        "<div class='calendar-item' style='grid-column:1/-1;'>" +
+                        "No confirmed deadline dates have been added yet. " +
+                        "This calendar is ready for official dates to be added." +
+                        "</div>";
+                    return;
+                }
+
+                entries.forEach(function (entry) {
+                    const item = document.createElement("div");
+                    item.className = "calendar-day has-date";
+                    item.innerHTML =
+                        entry.code +
+                        "<small>" + entry.date + "</small>";
+                    calendar.appendChild(item);
+                });
+            }
+
+            /*
+             * Closing Soon
+             */
+            function renderClosingSoon() {
+                const list = document.getElementById("closingSoonList");
+                if (!list) return;
+
+                const now = new Date();
+
+                const upcoming = Object.keys(deadlineData)
+                    .filter(function (code) {
+                        return deadlineData[code];
+                    })
+                    .map(function (code) {
+                        const date = new Date(deadlineData[code] + "T23:59:59");
+                        return {
+                            code: code,
+                            name: universityNames[code],
+                            date: date,
+                            days: Math.ceil((date - now) / 86400000)
+                        };
+                    })
+                    .filter(function (item) {
+                        return item.days >= 0 && item.days <= 45;
+                    })
+                    .sort(function (a, b) {
+                        return a.date - b.date;
+                    });
+
+                if (!upcoming.length) {
+                    list.innerHTML =
+                        "No confirmed university deadlines are currently listed " +
+                        "within the next 45 days.";
+                    return;
+                }
+
+                list.innerHTML = upcoming.map(function (item) {
+                    return (
+                        "<div class='deadline-item'>" +
+                        "<strong>" + item.name + "</strong>" +
+                        "<div class='deadline-days'>" +
+                        item.days + " days left" +
+                        "</div>" +
+                        "<small>Deadline: " +
+                        item.date.toLocaleDateString("en-ZA") +
+                        "</small>" +
+                        "</div>"
+                    );
+                }).join("");
+            }
+
+            /*
+             * Starter Course Finder.
+             * Add more courses to this array as UniEasy's university
+             * course directory grows.
+             */
+            const courseData = [
+                ["Computer Science", "NWU"],
+                ["Computer Science", "UJ"],
+                ["Computer Science", "UCT"],
+                ["Computer Science", "WITS"],
+                ["Computer Science", "UP"],
+                ["Mathematics", "NWU"],
+                ["Mathematics", "UCT"],
+                ["Mathematics", "WITS"],
+                ["Engineering", "TUT"],
+                ["Engineering", "UP"],
+                ["Engineering", "UCT"],
+                ["Information Technology", "TUT"],
+                ["Information Technology", "UJ"],
+                ["Information Technology", "CUT"],
+                ["Accounting", "UJ"],
+                ["Accounting", "UCT"],
+                ["Accounting", "WITS"],
+                ["Law", "UP"],
+                ["Law", "WITS"],
+                ["Law", "UKZN"],
+                ["Education", "NWU"],
+                ["Education", "UJ"],
+                ["Education", "UP"],
+                ["Health Sciences", "SMU"],
+                ["Health Sciences", "UCT"],
+                ["Nursing", "UKZN"],
+                ["Nursing", "NWU"]
+            ];
+
+            const courseInput = document.getElementById("courseFinderInput");
+            const courseResults = document.getElementById("courseFinderResults");
+
+            function searchCourses() {
+                if (!courseInput || !courseResults) return;
+
+                const query = courseInput.value.trim().toLowerCase();
+
+                if (!query) {
+                    courseResults.textContent =
+                        "Type a course name to search.";
+                    return;
+                }
+
+                const results = courseData.filter(function (item) {
+                    return item[0].toLowerCase().includes(query) ||
+                           universityNames[item[1]].toLowerCase().includes(query);
+                });
+
+                if (!results.length) {
+                    courseResults.textContent =
+                        "No course matches found in the starter directory.";
+                    return;
+                }
+
+                courseResults.innerHTML = results.map(function (item) {
+                    return (
+                        "<div class='course-result'>" +
+                        "<strong>" + item[0] + "</strong><br>" +
+                        universityNames[item[1]] +
+                        "</div>"
+                    );
+                }).join("");
+            }
+
+            if (courseInput) {
+                courseInput.addEventListener("input", searchCourses);
+            }
+
+            document.body.classList.remove("apply-by-myself-mode");
+
+            renderApplicationCalendar();
+            renderClosingSoon();
+        });
+    </script>
 
     <script>
         document.addEventListener("DOMContentLoaded", function () {
